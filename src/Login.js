@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Login({
   onSubmit,
   loginEmail,
@@ -27,6 +29,7 @@ export default function Login({
         />
         <input type="submit" value="Login" />
       </form>
+      <Link to="/register">Register</Link>
     </div>
   );
 }
