@@ -10,6 +10,9 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./firebase-config";
+import ProtectedRoute from "./ProtectedRoute";
+import Home from "./Home";
+import TaskList from "./TaskList";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -18,16 +21,22 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   let navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setIsLoggedIn(!!currentUser);
     });
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
+    }
+  }, [user]);
 
   const register = async (e) => {
     e.preventDefault();
@@ -53,7 +62,6 @@ function App() {
       );
       setLoginEmail("");
       setLoginPassword("");
-      navigate("/home");
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -64,7 +72,6 @@ function App() {
     e.preventDefault();
     try {
       await signOut(auth);
-      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -73,7 +80,24 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/home" element={<h1>Home</h1>} />
+        <Route
+          exact
+          path="/home"
+          element={
+            <ProtectedRoute user={user}>
+              <Home onLogoutClick={logout} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/home/tasklist"
+          element={
+            <ProtectedRoute user={user}>
+              <TaskList />
+            </ProtectedRoute>
+          }
+        />
         <Route
           exact
           path="/register"
@@ -101,17 +125,6 @@ function App() {
           }
         />
       </Routes>
-      <Link to="/">Home</Link>
-      <br />
-      <Link to="/register">Register</Link>
-      <br />
-      <Link to="/login">Login</Link>
-      <br />
-      <p>CURRENT USER:</p>
-      {user?.email ?? "No user"}
-      <br />
-      <br />
-      <input type="button" value="Logout" onClick={logout} />
     </div>
   );
 }
