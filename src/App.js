@@ -1,6 +1,6 @@
 import "./App.css";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {
@@ -11,8 +11,9 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ProtectedRoute from "./ProtectedRoute";
-import Home from "./Home";
-import TaskList from "./TaskList";
+import Home from "./components/Home";
+import TaskList from "./components/TaskList";
+import Profile from "./components/Profile";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -95,6 +96,15 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <TaskList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/home/profile"
+          element={
+            <ProtectedRoute user={user}>
+              <Profile />
             </ProtectedRoute>
           }
         />
