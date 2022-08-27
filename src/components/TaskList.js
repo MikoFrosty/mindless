@@ -1,10 +1,13 @@
 import Header from "./Header";
+import Task from "./Task";
 
 export default function TaskList() {
   return (
     <div>
-      <Header pageName="Task List" showProfileBtn={false} showBackBtn={true}/>
-      <p>Edit Tasks</p>
+      <Header pageName="Task List" hideProfileBtn={true} hideBackBtn={false}/>
+      <button onClick={() => {}}>Add Task</button>
+      <p>Task List</p>
+      <Task />
     </div>
   );
 }
