@@ -104,7 +104,7 @@ function App() {
           path="/home/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile />
+              <Profile user={user} logout={logout}/>
             </ProtectedRoute>
           }
         />
