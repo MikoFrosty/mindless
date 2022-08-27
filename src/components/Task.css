@@ -1,0 +1,21 @@
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    margin: 0 auto 20px auto;
+}
+
+.edit {
+    margin-right: 20px;
+}
+
+.delete {
+    margin-left: auto;
+}
