@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MindLess",
+  "name": "MindLess",
+  "description": "MindLess is a web application that allows users to create routines to help them stay on track.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#fabb00",
   "background_color": "#ffffff"
 }
