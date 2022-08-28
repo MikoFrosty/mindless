@@ -14,6 +14,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Home from "./components/Home";
 import TaskList from "./components/TaskList";
 import Profile from "./components/Profile";
+import Landing from "./components/Landing";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -35,7 +36,7 @@ function App() {
     if (user) {
       navigate("/home", { replace: true });
     } else {
-      navigate("/login", { replace: true });
+      navigate("/", { replace: true });
     }
   }, [user]);
 
@@ -81,6 +82,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route exact path="/" element={<Landing />} />
         <Route
           exact
           path="/home"
