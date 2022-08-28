@@ -1,0 +1,75 @@
+#landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    min-height: 100%;
+}
+
+#landing h1 {
+    font-size: 6.5rem;
+    text-align: center;
+    color: #fabb00;
+    margin: 40px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+#landing img {
+    max-width: 300px;
+    height: auto;
+}
+
+#landing .login-button {
+    text-decoration: none;
+    background-color: #fabb00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 70px;
+    cursor: pointer;
+    width: 300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#landing .login-button:hover {
+    background-color: #fff;
+    color: #fabb00;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+#landing .login-button:active {
+    background-color: #fff;
+    color: #fabb00;
+}
+#landing .login-button:focus {
+    outline: none;
+}
+
+#landing .register-button {
+    text-decoration: none;
+    background-color: #004dcb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#landing .register-button:hover {
+    background-color: #fff;
+    color: #004dcb;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+#landing .register-button:active {
+    background-color: #fff;
+    color: #004dcb;
+}
+#landing .register-button:focus {
+    outline: none;
+}
