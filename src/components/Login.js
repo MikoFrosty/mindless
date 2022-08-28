@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Login.css";
 
 export default function Login({
   onSubmit,
@@ -8,9 +9,9 @@ export default function Login({
   setLoginPassword,
 }) {
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={onSubmit}>
+    <div id="login-page">
+      <h2>Login</h2>
+      <form className="login-form" onSubmit={onSubmit}>
         <label htmlFor="email">Email:</label>
         <input
           type="text"
@@ -18,8 +19,6 @@ export default function Login({
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
         />
-        <br />
-        <br />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -29,7 +28,7 @@ export default function Login({
         />
         <input type="submit" value="Login" />
       </form>
-      <Link to="/register">Register</Link>
+      <Link className="register-button" to="/register">Create Account</Link>
     </div>
   );
 }
