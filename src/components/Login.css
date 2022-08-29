@@ -9,6 +9,7 @@
 }
 
 #login-page h2 {
+    margin: 72px;
     font-size: 5.5rem;
     text-align: center;
     color: #fff;
@@ -25,7 +26,7 @@
     text-align: left;
 }
 #login-page .login-form label {
-    width: 310px;
+    width: 300px;
     font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
@@ -36,7 +37,7 @@
     height: 10px;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px 15px;
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -53,7 +54,7 @@
     font-weight: bold;
     margin-top: 40px;
     cursor: pointer;
-    width: 322px;
+    width: 300px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 #login-page .login-form input[type="submit"]:hover {
