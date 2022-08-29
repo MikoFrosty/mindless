@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Register.css";
 
 export default function Register({
   onSubmit,
@@ -8,9 +9,9 @@ export default function Register({
   setRegisterPassword,
 }) {
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={onSubmit}>
+    <div id="register-page">
+      <h2>Create Account</h2>
+      <form className="register-form" onSubmit={onSubmit}>
         <label htmlFor="email">Email:</label>
         <input
           type="text"
@@ -18,8 +19,6 @@ export default function Register({
           value={registerEmail}
           onChange={(e) => setRegisterEmail(e.target.value)}
         />
-        <br />
-        <br />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -29,7 +28,7 @@ export default function Register({
         />
         <input type="submit" value="Register" />
       </form>
-      <Link to="/login">Login</Link>
+      <Link className="login-button" to="/login">Login</Link>
     </div>
   );
 }
