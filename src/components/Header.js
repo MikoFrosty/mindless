@@ -12,13 +12,22 @@ export default function Header({
   const navigate = useNavigate();
   return (
     <div id="header">
-      <button className={hideBackBtn ? "hide" : undefined} onClick={() => navigate(-1)}>
-        Back
-      </button>
-      <h1>{pageName}</h1>
-      <Link to="/home/profile" className={hideProfileBtn ? "hide" : undefined}>
-        Profile
-      </Link>
+      <div id="header-content">
+        <button
+          className={hideBackBtn ? "hide" : undefined}
+          onClick={() => navigate(-1)}
+        >
+          <i class="las la-arrow-circle-left"></i>
+        </button>
+        <h2>{pageName}</h2>
+        <Link
+          to="/home/profile"
+          id="profile-button"
+          className={hideProfileBtn ? "hide" : undefined}
+        >
+          <i class="las la-user-circle"></i>
+        </Link>
+      </div>
     </div>
   );
 }
