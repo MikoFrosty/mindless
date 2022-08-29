@@ -2,7 +2,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -38,6 +38,7 @@ function App() {
     } else {
       navigate("/", { replace: true });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const register = async (e) => {
