@@ -21,6 +21,7 @@ function App() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [taskList, setTaskList] = useState(() => JSON.parse(localStorage.getItem("taskList")) || []);
 
   const [user, setUser] = useState({});
 
@@ -98,7 +99,7 @@ function App() {
           path="/home/tasklist"
           element={
             <ProtectedRoute user={user}>
-              <TaskList />
+              <TaskList taskList={taskList} setTaskList={setTaskList}/>
             </ProtectedRoute>
           }
         />
