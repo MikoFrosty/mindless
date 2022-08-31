@@ -31,6 +31,12 @@ export default function TaskList({ taskList, setTaskList }) {
     localStorage.setItem("taskList", JSON.stringify(taskList));
   }, [taskList]);
 
+  const handleTaskDelete = (name) => {
+    setTaskList(() => {
+      return taskList.filter((task) => task.name !== name);
+    });
+  };
+
   return (
     <>
       <Header pageName="Task List" hideProfileBtn={true} hideBackBtn={false} />
@@ -46,13 +52,15 @@ export default function TaskList({ taskList, setTaskList }) {
           />
         ) : null}
         <button id="add-task-button" onClick={handleAddTaskClick}>
-          <i class="las la-plus-circle"></i> Add Task
+          <i className="las la-plus-circle"></i> Add Task
         </button>
         <h3 id="task-list-label">Task List</h3>
         {taskList.length
           ? taskList
               .sort((a, b) => a.order - b.order)
-              .map((task, index) => <Task key={index} task={task} />)
+              .map((task, index) => (
+                <Task key={index} task={task} onTaskDelete={handleTaskDelete} />
+              ))
           : "No tasks"}
       </div>
     </>
