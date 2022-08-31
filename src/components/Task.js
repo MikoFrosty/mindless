@@ -46,13 +46,13 @@ export default function Task({ task, onTaskDelete }) {
       onDragEnter={handleTaskDragEnter}
       onDragLeave={handleTaskDragLeave}
     >
-      <button className="edit" onClick={() => {}}>
-        Edit
+      <button className="task-edit-button" onClick={() => {}}>
+      <i class="las la-edit"></i>
       </button>
       <p>Name: {name}</p>
       <p>Order: {order}</p>
-      <button className="delete" onClick={() => onTaskDelete(name)}>
-        Delete
+      <button className="task-delete-button" onClick={() => onTaskDelete(name)}>
+      <i class="las la-trash"></i>
       </button>
     </div>
   );
