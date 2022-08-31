@@ -16,7 +16,7 @@ export default function Home({ user }) {
         Start Routine
         </button>
         <Link id="tasklist-button" to="/home/tasklist">
-        <i class="las la-edit"></i> EDIT/VIEW TASKS
+        <i className="las la-edit"></i> EDIT/VIEW TASKS
         </Link>
       </div>
     </>
