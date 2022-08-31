@@ -17,7 +17,7 @@ export default function Header({
           className={hideBackBtn ? "hide" : undefined}
           onClick={() => navigate(-1)}
         >
-          <i class="las la-arrow-circle-left"></i>
+          <i className="las la-arrow-circle-left"></i>
         </button>
         <h2>{pageName}</h2>
         <Link
@@ -25,7 +25,7 @@ export default function Header({
           id="profile-button"
           className={hideProfileBtn ? "hide" : undefined}
         >
-          <i class="las la-user-circle"></i>
+          <i className="las la-user-circle"></i>
         </Link>
       </div>
     </div>
