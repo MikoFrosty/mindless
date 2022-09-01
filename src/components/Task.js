@@ -1,6 +1,6 @@
 import "./Task.css";
 
-export default function Task({ task, onTaskDelete }) {
+export default function Task({ task, onTaskDelete, onEditTaskClick }) {
   const { name, order } = task;
 
   const handleTaskDragStart = (e) => {
@@ -46,13 +46,13 @@ export default function Task({ task, onTaskDelete }) {
       onDragEnter={handleTaskDragEnter}
       onDragLeave={handleTaskDragLeave}
     >
-      <button className="task-edit-button" onClick={() => {}}>
-      <i class="las la-edit"></i>
+      <button className="task-edit-button" onClick={() => onEditTaskClick(task)}>
+      <i className="las la-edit"></i>
       </button>
       <p>Name: {name}</p>
       <p>Order: {order}</p>
       <button className="task-delete-button" onClick={() => onTaskDelete(name)}>
-      <i class="las la-trash"></i>
+      <i className="las la-trash"></i>
       </button>
     </div>
   );
