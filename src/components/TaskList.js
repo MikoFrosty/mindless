@@ -2,7 +2,7 @@ import Header from "./Header";
 import AddTaskForm from "./AddTaskForm";
 import EditTaskForm from "./EditTaskForm";
 import Task from "./Task";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./TaskList.css";
 
 export default function TaskList({ taskList, setTaskList }) {
@@ -13,57 +13,57 @@ export default function TaskList({ taskList, setTaskList }) {
   const [editTaskName, setEditTaskName] = useState("");
   const [editTaskOrder, setEditTaskOrder] = useState(0);
 
-  const handleAddTaskClick = () => {
+  function handleAddTaskClick() {
     setShowAddTaskForm(true);
-  };
-  const handleEditTaskClick = ({ name, order }) => {
+  }
+  function handleEditTaskClick({ name, order }) {
     setEditTaskName(name);
     setEditTaskOrder(order);
     setShowEditTaskForm(true);
-  };
+  }
 
-  const handleAddTaskFormSubmit = (e) => {
+  function handleAddTaskFormSubmit(e) {
     e.preventDefault();
-    setTaskList(() => [
-      ...taskList,
-      {
-        name: newTaskName,
-        order: newTaskOrder,
-      },
-    ]);
+    setTaskList(() =>
+      [
+        ...taskList,
+        {
+          name: newTaskName,
+          order: newTaskOrder,
+        },
+      ].sort((a, b) => a.order - b.order)
+    );
     setNewTaskName("");
     setNewTaskOrder(0);
     setShowAddTaskForm(false);
-  };
-  const handleEditTaskFormSubmit = (e, originalName, originalOrder) => {
+  }
+  function handleEditTaskFormSubmit(e, originalName, originalOrder) {
     e.preventDefault();
     setTaskList(() => {
-      return taskList.map((task) => {
-        if (task.name === originalName && task.order === originalOrder) {
-          return {
-            ...task,
-            name: editTaskName,
-            order: editTaskOrder,
-          };
-        } else {
-          return task;
-        }
-      });
+      return taskList
+        .map((task) => {
+          if (task.name === originalName && task.order === originalOrder) {
+            return {
+              ...task,
+              name: editTaskName,
+              order: editTaskOrder,
+            };
+          } else {
+            return task;
+          }
+        })
+        .sort((a, b) => a.order - b.order);
     });
     setEditTaskName("");
     setEditTaskOrder(0);
     setShowEditTaskForm(false);
-  };
+  }
 
-  useEffect(() => {
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-  }, [taskList]);
-
-  const handleTaskDelete = (name) => {
+  function handleTaskDelete(name) {
     setTaskList(() => {
       return taskList.filter((task) => task.name !== name);
     });
-  };
+  }
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function TaskList({ taskList, setTaskList }) {
         {showAddTaskForm ? (
           <AddTaskForm
             setShowAddTaskForm={setShowAddTaskForm}
-            handleAddTaskFormSubmit={handleAddTaskFormSubmit}
+            onAddTaskFormSubmit={handleAddTaskFormSubmit}
             newTaskName={newTaskName}
             setNewTaskName={setNewTaskName}
             newTaskOrder={newTaskOrder}
@@ -82,7 +82,7 @@ export default function TaskList({ taskList, setTaskList }) {
         {showEditTaskForm ? (
           <EditTaskForm
             setShowEditTaskForm={setShowEditTaskForm}
-            handleEditTaskFormSubmit={handleEditTaskFormSubmit}
+            onEditTaskFormSubmit={handleEditTaskFormSubmit}
             editTaskName={editTaskName}
             setEditTaskName={setEditTaskName}
             editTaskOrder={editTaskOrder}
@@ -94,16 +94,14 @@ export default function TaskList({ taskList, setTaskList }) {
         </button>
         <h3 id="task-list-label">Task List</h3>
         {taskList.length
-          ? taskList
-              .sort((a, b) => a.order - b.order)
-              .map((task, index) => (
-                <Task
-                  key={index}
-                  task={task}
-                  onTaskDelete={handleTaskDelete}
-                  onEditTaskClick={handleEditTaskClick}
-                />
-              ))
+          ? taskList.map((task, index) => (
+              <Task
+                key={index}
+                task={task}
+                onTaskDelete={handleTaskDelete}
+                onEditTaskClick={handleEditTaskClick}
+              />
+            ))
           : "No tasks"}
       </div>
     </>
