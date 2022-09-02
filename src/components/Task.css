@@ -44,7 +44,7 @@
 }
 
 .task-delete-button {
-    margin-left: auto;
+    margin-left: 20px;
     border: none;
     background-color: transparent;
     font-size: 1.8rem;
@@ -60,4 +60,14 @@
     outline: none;
 }
 
-
+.task-name-display {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+}
+.task-order-display {
+    margin-left: auto;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+}
