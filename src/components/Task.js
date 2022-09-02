@@ -49,8 +49,8 @@ export default function Task({ task, onTaskDelete, onEditTaskClick }) {
       <button className="task-edit-button" onClick={() => onEditTaskClick(task)}>
       <i className="las la-edit"></i>
       </button>
-      <p>Name: {name}</p>
-      <p>Order: {order}</p>
+      <p className="task-name-display">{name}</p>
+      <p className="task-order-display">Order: {order}</p>
       <button className="task-delete-button" onClick={() => onTaskDelete(name)}>
       <i className="las la-trash"></i>
       </button>
