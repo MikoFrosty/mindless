@@ -3,7 +3,7 @@ import "./EditTaskForm.css";
 
 export default function EditTaskForm({
   setShowEditTaskForm,
-  handleEditTaskFormSubmit,
+  onEditTaskFormSubmit,
   editTaskName,
   setEditTaskName,
   editTaskOrder,
@@ -17,7 +17,7 @@ export default function EditTaskForm({
       <form
         id="edit-task-form"
         onSubmit={(event) =>
-          handleEditTaskFormSubmit(event, originalTaskName, originalTaskOrder)
+          onEditTaskFormSubmit(event, originalTaskName, originalTaskOrder)
         }
       >
         <label htmlFor="task-name">Task Name:</label>
@@ -30,7 +30,9 @@ export default function EditTaskForm({
         <label htmlFor="task-order">Task Order:</label>
         <input
           value={editTaskOrder}
-          onChange={(e) => setEditTaskOrder(e.target.value)}
+          onChange={(e) =>
+            setEditTaskOrder(Number.parseInt(e.target.value, 10))
+          }
           type="number"
           name="task-order"
           min="0"
