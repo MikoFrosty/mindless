@@ -12,11 +12,11 @@ export default function Home({ user }) {
         hideBackBtn={true}
       />
       <div id="home-page">
-        <button id="start-button" onClick={() => {}}>
-        Start Routine
-        </button>
+        <Link id="start-button" to="/home/start">
+          Start Routine
+        </Link>
         <Link id="tasklist-button" to="/home/tasklist">
-        <i className="las la-edit"></i> EDIT/VIEW TASKS
+          <i className="las la-edit"></i> EDIT/VIEW TASKS
         </Link>
       </div>
     </>
