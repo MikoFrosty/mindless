@@ -13,6 +13,7 @@ import { auth } from "./firebase-config";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "./components/Home";
 import StartRoutine from "./components/StartRoutine";
+import CompleteRoutine from "./components/CompleteRoutine";
 import TaskList from "./components/TaskList";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
@@ -22,7 +23,9 @@ function App() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [taskList, setTaskList] = useState(() => JSON.parse(localStorage.getItem("taskList")) || []);
+  const [taskList, setTaskList] = useState(
+    () => JSON.parse(localStorage.getItem("taskList")) || []
+  );
 
   const [user, setUser] = useState({});
 
@@ -40,8 +43,12 @@ function App() {
     } else {
       navigate("/", { replace: true });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
 
   const register = async (e) => {
     e.preventDefault();
@@ -100,7 +107,16 @@ function App() {
           path="/home/start"
           element={
             <ProtectedRoute user={user}>
-              <StartRoutine taskList={taskList} setTaskList={setTaskList}/>
+              <StartRoutine taskList={taskList} setTaskList={setTaskList} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/home/complete"
+          element={
+            <ProtectedRoute user={user}>
+              <CompleteRoutine taskList={taskList} />
             </ProtectedRoute>
           }
         />
@@ -109,7 +125,7 @@ function App() {
           path="/home/tasklist"
           element={
             <ProtectedRoute user={user}>
-              <TaskList taskList={taskList} setTaskList={setTaskList}/>
+              <TaskList taskList={taskList} setTaskList={setTaskList} />
             </ProtectedRoute>
           }
         />
@@ -118,7 +134,7 @@ function App() {
           path="/home/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile user={user} logout={logout}/>
+              <Profile user={user} logout={logout} />
             </ProtectedRoute>
           }
         />
