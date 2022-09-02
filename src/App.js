@@ -12,6 +12,7 @@ import {
 import { auth } from "./firebase-config";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "./components/Home";
+import StartRoutine from "./components/StartRoutine";
 import TaskList from "./components/TaskList";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
@@ -91,6 +92,15 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <Home onLogoutClick={logout} user={user} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/home/start"
+          element={
+            <ProtectedRoute user={user}>
+              <StartRoutine taskList={taskList} setTaskList={setTaskList}/>
             </ProtectedRoute>
           }
         />
