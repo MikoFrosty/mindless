@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef } from "react";
 import "./EditTaskForm.css";
 
 export default function EditTaskForm({
@@ -9,8 +9,8 @@ export default function EditTaskForm({
   editTaskOrder,
   setEditTaskOrder,
 }) {
-  const [originalTaskName, setOriginalTaskName] = useState(editTaskName);
-  const [originalTaskOrder, setOriginalTaskOrder] = useState(editTaskOrder);
+  const { current: originalTaskName } = useRef(editTaskName);
+  const { current: originalTaskOrder } = useRef(editTaskOrder);
 
   return (
     <div id="edit-task-form-div">
