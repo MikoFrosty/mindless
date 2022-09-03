@@ -21,7 +21,7 @@ export default function AddTaskForm({
         <label htmlFor="task-order">Task Order:</label>
         <input
           value={newTaskOrder}
-          onChange={(e) => setNewTaskOrder(Number.parseInt(e.target.value, 10))}
+          onChange={(e) => setNewTaskOrder(e.target.value)}
           type="number"
           name="task-order"
           min="0"
