@@ -6,8 +6,12 @@ export default function Landing() {
     <div id="landing">
       <h1>MindLess</h1>
       <img src="./logo512.png" alt="mindless logo" />
-      <Link className="login-button" to="/login">Login</Link>
-      <Link className="register-button" to="/register">Create Account</Link>
+      <Link className="login-button" to="/login">
+        Login
+      </Link>
+      <Link className="register-button" to="/register">
+        Create Account
+      </Link>
     </div>
   );
 }
