@@ -1,6 +1,4 @@
 import "./App.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import {
@@ -11,6 +9,8 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ProtectedRoute from "./ProtectedRoute";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Home from "./components/Home";
 import StartRoutine from "./components/StartRoutine";
 import CompleteRoutine from "./components/CompleteRoutine";
