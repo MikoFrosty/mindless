@@ -26,7 +26,6 @@ export default function Task({ task, onTaskDelete, onEditTaskClick }) {
     //e.target.style.backgroundColor = "white";
   };
 
-  
   const handleTaskDrop = (e) => {
     e.preventDefault();
     e.target.classList.remove("over");
@@ -46,13 +45,16 @@ export default function Task({ task, onTaskDelete, onEditTaskClick }) {
       onDragEnter={handleTaskDragEnter}
       onDragLeave={handleTaskDragLeave}
     >
-      <button className="task-edit-button" onClick={() => onEditTaskClick(task)}>
-      <i className="las la-edit"></i>
+      <button
+        className="task-edit-button"
+        onClick={() => onEditTaskClick(task)}
+      >
+        <i className="las la-edit"></i>
       </button>
       <p className="task-name-display">{name}</p>
       <p className="task-order-display">Order: {order}</p>
       <button className="task-delete-button" onClick={() => onTaskDelete(name)}>
-      <i className="las la-trash"></i>
+        <i className="las la-trash"></i>
       </button>
     </div>
   );
