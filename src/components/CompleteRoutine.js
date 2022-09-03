@@ -41,7 +41,9 @@ export default function CompleteRoutine({ taskList }) {
           </tbody>
         </table>
       </div>
-      <Link to="/home">Home</Link>
+      <Link id="home-button" to="/home">
+        Home
+      </Link>
     </div>
   );
 }
