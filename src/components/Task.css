@@ -1,73 +1,73 @@
 .task {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 12px 20px;
-    margin: 0 auto 20px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  margin: 0 auto 10px auto;
 }
 
 .over {
-    position: relative;
-    background-color: lightblue;
+  position: relative;
+  background-color: lightblue;
 }
 .over:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .task-edit-button {
-    margin-right: 20px;
-    border: none;
-    background-color: transparent;
-    font-size: 1.8rem;
-    cursor: pointer;
+  margin-right: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 .task-edit-button:hover {
-    color: #fabb00;
+  color: #fabb00;
 }
 .task-edit-button:active {
-    color: #fabb00;
+  color: #fabb00;
 }
 .task-edit-button:focus {
-    outline: none;
+  outline: none;
 }
 
 .task-delete-button {
-    margin-left: 20px;
-    border: none;
-    background-color: transparent;
-    font-size: 1.8rem;
-    cursor: pointer;
+  margin-left: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 .task-delete-button:hover {
-    color: #fabb00;
+  color: #fabb00;
 }
 .task-delete-button:active {
-    color: #fabb00;
+  color: #fabb00;
 }
 .task-delete-button:focus {
-    outline: none;
+  outline: none;
 }
 
 .task-name-display {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #000;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
 }
 .task-order-display {
-    margin-left: auto;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #000;
+  margin-left: auto;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
 }
