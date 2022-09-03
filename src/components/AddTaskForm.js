@@ -29,14 +29,14 @@ export default function AddTaskForm({
           inputMode="numeric"
           pattern="[0-9]*"
         />
-        <input type="submit" id="add-task-button" value="Add Task" />
+        <input type="submit" value="Add Task" />
+        <button
+          id="cancel-add-task-button"
+          onClick={() => setShowAddTaskForm(false)}
+        >
+          Cancel
+        </button>
       </form>
-      <button
-        id="cancel-add-task-button"
-        onClick={() => setShowAddTaskForm(false)}
-      >
-        Cancel
-      </button>
     </div>
   );
 }
