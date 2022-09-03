@@ -14,7 +14,7 @@
 
 .over {
   position: relative;
-  background-color: lightblue;
+  background-image: linear-gradient(lightblue, white 20%);
 }
 .over:after {
   content: "";
