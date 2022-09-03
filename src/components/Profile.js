@@ -6,9 +6,9 @@ export default function Profile({ user, logout }) {
     <>
       <Header pageName="Profile" hideProfileBtn={true} hideBackBtn={false} />
       <div id="profile-page">
-        <p>You are: {user.email}</p>
-        <p>FORM AREA HERE</p>
-        <button onClick={logout}>Logout</button>
+        <h4>Logged in as: {user.email}</h4>
+        <p>Profile editing currently unavailable</p>
+        <button id="logout-button" onClick={logout}>Logout</button>
       </div>
     </>
   );
