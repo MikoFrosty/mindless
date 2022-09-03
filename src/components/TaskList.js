@@ -65,6 +65,28 @@ export default function TaskList({ taskList, setTaskList }) {
     });
   }
 
+  function handleTaskDrop(orderA, orderB) {
+    setTaskList(() => {
+      return taskList
+        .map((task) => {
+          if (task.order === orderA) {
+            return {
+              ...task,
+              order: orderB,
+            };
+          } else if (task.order === orderB) {
+            return {
+              ...task,
+              order: orderA,
+            };
+          } else {
+            return task;
+          }
+        })
+        .sort((a, b) => a.order - b.order);
+    });
+  }
+
   return (
     <>
       <Header pageName="Task List" hideProfileBtn={true} hideBackBtn={false} />
@@ -100,6 +122,7 @@ export default function TaskList({ taskList, setTaskList }) {
                 task={task}
                 onTaskDelete={handleTaskDelete}
                 onEditTaskClick={handleEditTaskClick}
+                onTaskDrop={handleTaskDrop}
               />
             ))
           : "No tasks"}
