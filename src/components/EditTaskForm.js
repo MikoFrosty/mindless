@@ -40,14 +40,14 @@ export default function EditTaskForm({
           inputMode="numeric"
           pattern="[0-9]*"
         />
-        <input type="submit" id="edit-task-button" value="Edit Task" />
+        <input type="submit" value="Edit Task" />
+        <button
+          id="cancel-edit-task-button"
+          onClick={() => setShowEditTaskForm(false)}
+        >
+          Cancel
+        </button>
       </form>
-      <button
-        id="cancel-edit-task-button"
-        onClick={() => setShowEditTaskForm(false)}
-      >
-        Cancel
-      </button>
     </div>
   );
 }
