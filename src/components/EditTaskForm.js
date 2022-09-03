@@ -30,9 +30,7 @@ export default function EditTaskForm({
         <label htmlFor="task-order">Task Order:</label>
         <input
           value={editTaskOrder}
-          onChange={(e) =>
-            setEditTaskOrder(Number.parseInt(e.target.value, 10))
-          }
+          onChange={(e) => setEditTaskOrder(e.target.value)}
           type="number"
           name="task-order"
           min="0"
