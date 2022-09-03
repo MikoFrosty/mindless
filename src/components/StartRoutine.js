@@ -35,25 +35,33 @@ export default function StartRoutine({ taskList, setTaskList }) {
     return currentTask === taskList.length - 1;
   }
 
+  function CurrentTask() {
+    return (
+      <>
+        <h2>Current Task:</h2>
+        <h3>{taskList[currentTask].name}</h3>
+        <button id="next-task-button" onClick={handleTaskClick}>
+          {lastTask() ? "Complete" : "Next Task"}
+        </button>
+      </>
+    );
+  }
+
+  function NoTask() {
+    return (
+      <>
+        <p>You have no current tasks!</p>
+        <p>Please go back and add some using the edit/view tool.</p>
+        <Link to="/home">Home</Link>
+        <br />
+        <Link to="/home/tasklist">Edit/View Tasks</Link>
+      </>
+    );
+  }
+
   return (
     <div id="start-routine-page">
-      <h2>Start Routine</h2>
-      {taskList.length > 0 ? (
-        <div id="current-task">
-          <h3>{taskList[currentTask].name}</h3>
-          <button id="next-task-button" onClick={handleTaskClick}>
-            {lastTask() ? "Complete" : "Next Task"}
-          </button>
-        </div>
-      ) : (
-        <>
-          <p>You have no current tasks!</p>
-          <p>Please go back and add some using the edit/view tool.</p>
-          <Link to="/home">Home</Link>
-          <br />
-          <Link to="/home/tasklist">Edit/View Tasks</Link>
-        </>
-      )}
+      <div id="current-task">{taskList.length > 0 ? <CurrentTask /> : <NoTask />}</div>
     </div>
   );
 }
