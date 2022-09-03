@@ -26,7 +26,6 @@ function App() {
   const [taskList, setTaskList] = useState(
     () => JSON.parse(localStorage.getItem("taskList")) || []
   );
-
   const [user, setUser] = useState({});
 
   let navigate = useNavigate();
@@ -50,7 +49,7 @@ function App() {
     localStorage.setItem("taskList", JSON.stringify(taskList));
   }, [taskList]);
 
-  const register = async (e) => {
+  async function register(e) {
     e.preventDefault();
     try {
       const user = await createUserWithEmailAndPassword(
@@ -62,9 +61,9 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
-  const login = async (e) => {
+  async function login(e) {
     e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(
@@ -78,16 +77,16 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
-  const logout = async (e) => {
+  async function logout(e) {
     e.preventDefault();
     try {
       await signOut(auth);
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
   return (
     <div className="App">
