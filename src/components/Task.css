@@ -10,14 +10,19 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 12px 20px;
   margin: 0 auto 10px auto;
+  cursor: grab;
 }
-
+.dragging {
+    opacity: 0.4;
+}
 .over {
   position: relative;
-  background-image: linear-gradient(lightblue, white 20%);
+  background-color: lightblue;
+  /* for using a color that implies insertion just abover the current element */
+  /*background-image: linear-gradient(lightblue, white 20%);*/
 }
 .over:after {
-  content: "";
+  content: "(SWAP)";
   display: block;
   position: absolute;
   top: 0;
