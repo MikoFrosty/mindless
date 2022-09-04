@@ -22,6 +22,7 @@ export default function AddTaskForm({
           type="text"
           name="task-name"
           required
+          pattern="^[ ]*[A-Za-z0-9]+[A-Za-z0-9 ]*"
           value={newTaskName}
           onChange={(e) => setNewTaskName(e.target.value)}
         />
@@ -35,7 +36,7 @@ export default function AddTaskForm({
           min="0"
           max="1000"
           inputMode="numeric"
-          pattern="[0-9]*"
+          pattern="[0-9]+"
         />
         <input type="submit" value="Add Task" />
         <button
