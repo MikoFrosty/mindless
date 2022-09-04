@@ -2,7 +2,7 @@ import Header from "./Header";
 import AddTaskForm from "./AddTaskForm";
 import EditTaskForm from "./EditTaskForm";
 import Task from "./Task";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./TaskList.css";
 
 export default function TaskList({ taskList, setTaskList }) {
@@ -12,6 +12,17 @@ export default function TaskList({ taskList, setTaskList }) {
   const [showEditTaskForm, setShowEditTaskForm] = useState(false);
   const [editTaskName, setEditTaskName] = useState("");
   const [editTaskOrder, setEditTaskOrder] = useState("0");
+
+  useEffect(() => {
+    if (typeof newTaskOrder !== "number") {
+      setNewTaskOrder(Number.parseInt(newTaskOrder, 10));
+    }
+  }, [newTaskOrder]);
+  useEffect(() => {
+    if (typeof editTaskOrder !== "number") {
+      setEditTaskOrder(Number.parseInt(editTaskOrder, 10));
+    }
+  }, [editTaskOrder]);
 
   function handleAddTaskClick() {
     setShowAddTaskForm(true);
@@ -32,7 +43,7 @@ export default function TaskList({ taskList, setTaskList }) {
       [
         ...taskList,
         {
-          name: newTaskName,
+          name: newTaskName.trim(),
           order: newTaskOrder,
         },
       ].sort((a, b) => a.order - b.order)
@@ -43,7 +54,12 @@ export default function TaskList({ taskList, setTaskList }) {
   }
   function handleEditTaskFormSubmit(e, originalName, originalOrder) {
     e.preventDefault();
-    if (taskList.find((task) => task.order === editTaskOrder)) {
+    if (
+      taskList.find(
+        (task) =>
+          task.order === editTaskOrder && editTaskOrder !== originalOrder
+      )
+    ) {
       alert("Task order already exists");
       return;
     }
@@ -53,14 +69,14 @@ export default function TaskList({ taskList, setTaskList }) {
           if (task.name === originalName && task.order === originalOrder) {
             return {
               ...task,
-              name: editTaskName,
+              name: editTaskName.trim(),
               order: editTaskOrder,
             };
           } else {
             return task;
           }
-        })        
-        .sort((a, b) => a.order - b.order)
+        })
+        .sort((a, b) => a.order - b.order);
     });
     setEditTaskName("");
     setEditTaskOrder(0);
