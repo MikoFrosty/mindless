@@ -24,6 +24,7 @@ export default function EditTaskForm({
         <input
           type="text"
           required
+          pattern="^[ ]*[A-Za-z0-9]+[A-Za-z0-9 ]*"
           name="task-name"
           value={editTaskName}
           onChange={(e) => setEditTaskName(e.target.value)}
@@ -38,7 +39,7 @@ export default function EditTaskForm({
           min="0"
           max="1000"
           inputMode="numeric"
-          pattern="[0-9]*"
+          pattern="[0-9]+"
         />
         <input type="submit" value="Edit Task" />
         <button
