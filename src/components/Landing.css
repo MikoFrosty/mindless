@@ -73,3 +73,9 @@
 #landing .register-button:focus {
     outline: none;
 }
+
+@media only screen and (max-width: 550px) {
+    #landing h1 {
+        font-size: 4rem;
+    }
+}
