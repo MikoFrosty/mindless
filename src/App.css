@@ -4,4 +4,9 @@
   background-image: linear-gradient(#ffffff, #f5f5f5);
   overflow-y: auto;
 }
-
+input[type="submit"] {
+  /* fix for mobile display */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
