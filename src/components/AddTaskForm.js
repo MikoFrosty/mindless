@@ -8,6 +8,12 @@ export default function AddTaskForm({
   newTaskOrder,
   setNewTaskOrder,
 }) {
+  function handleCancelClick() {
+    setShowAddTaskForm(false);
+    setNewTaskName("");
+    setNewTaskOrder("0");
+  }
+
   return (
     <div id="add-task-form-div">
       <form id="add-task-form" onSubmit={onAddTaskFormSubmit}>
@@ -15,12 +21,14 @@ export default function AddTaskForm({
         <input
           type="text"
           name="task-name"
+          required
           value={newTaskName}
           onChange={(e) => setNewTaskName(e.target.value)}
         />
         <label htmlFor="task-order">Task Order:</label>
         <input
           value={newTaskOrder}
+          required
           onChange={(e) => setNewTaskOrder(e.target.value)}
           type="number"
           name="task-order"
@@ -32,7 +40,8 @@ export default function AddTaskForm({
         <input type="submit" value="Add Task" />
         <button
           id="cancel-add-task-button"
-          onClick={() => setShowAddTaskForm(false)}
+          type="button"
+          onClick={handleCancelClick}
         >
           Cancel
         </button>
