@@ -19,7 +19,10 @@ export default function Task({
     e.target.style.cursor = "grab";
   };
   const handleTaskDragEnter = (e) => {
-    if (!e.target.classList.contains("dragging") && e.target.classList.contains("task")) {
+    if (
+      !e.target.classList.contains("dragging") &&
+      e.target.classList.contains("task")
+    ) {
       e.target.classList.add("over");
     }
   };
@@ -32,7 +35,7 @@ export default function Task({
   };
   const handleTaskDrop = (e) => {
     e.preventDefault();
-    let orderA = e.dataTransfer.getData("order");
+    let orderA = Number.parseInt(e.dataTransfer.getData("order"), 10);
     if (orderA !== order) {
       onTaskDrop(orderA, order);
     }
