@@ -50,11 +50,9 @@ export default function StartRoutine({ taskList, setTaskList }) {
   function NoTask() {
     return (
       <>
-        <p>You have no current tasks!</p>
-        <p>Please go back and add some using the edit/view tool.</p>
-        <Link to="/home">Home</Link>
-        <br />
-        <Link to="/home/tasklist">Edit/View Tasks</Link>
+        <p>No current tasks!</p>
+        <p className="no-tasks-desc">Please go back and add some using the edit/view tool.</p>
+        <Link id="home-button" to="/home">Home</Link>
       </>
     );
   }
