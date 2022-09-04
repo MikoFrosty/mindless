@@ -55,3 +55,18 @@
 .hide {
     visibility: hidden;
 }
+
+@media only screen and (max-width: 600px) {
+    #header {
+        height: 80px;
+    }
+    #header h2 {
+        font-size: 2.2em;
+    }
+    #header button {
+        font-size: 36px;
+    }
+    #header #profile-button {
+        font-size: 36px;
+    }
+}
