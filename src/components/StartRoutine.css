@@ -7,11 +7,10 @@
     width: 100%;
 }
 #current-task {
-    margin: 30px 0;
     font-size: 2rem;
 }
 #current-task > h2 {
-    margin: 50px;
+    margin: 40px;
     font-size: 3rem;
 }
 #next-task-button {
@@ -38,4 +37,54 @@
 }
 #next-task-button:focus {
     outline: none;
+}
+#start-routine-page #home-button {
+    display: block;
+    text-decoration: none;
+    background-color: #fabb00;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 40px auto;
+    width: 320px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#start-routine-page #home-button:hover {
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+#start-routine-page #home-button:active {
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+}
+#start-routine-page #home-button:focus {
+    outline: none;
+}
+.no-tasks-desc {
+    font-size: 1.5rem;
+    margin: 50px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    #start-routine-page {
+        height: 100%;
+    }
+    #next-task-button {
+        max-width: 320px;
+        padding: 70px;
+        font-size: 2.5rem;
+    }
+    #start-routine-page #home-button {
+        margin: 40px auto 0;
+    }
+}
+@media only screen and (max-width: 350px) {
+    #next-task-button {
+        max-width: 300px;
+        padding: 50px;
+        font-size: 2.25rem;
+    }
 }
