@@ -23,6 +23,7 @@ export default function EditTaskForm({
         <label htmlFor="task-name">Task Name:</label>
         <input
           type="text"
+          required
           name="task-name"
           value={editTaskName}
           onChange={(e) => setEditTaskName(e.target.value)}
@@ -32,6 +33,7 @@ export default function EditTaskForm({
           value={editTaskOrder}
           onChange={(e) => setEditTaskOrder(e.target.value)}
           type="number"
+          required
           name="task-order"
           min="0"
           max="1000"
@@ -41,6 +43,7 @@ export default function EditTaskForm({
         <input type="submit" value="Edit Task" />
         <button
           id="cancel-edit-task-button"
+          type="button"
           onClick={() => setShowEditTaskForm(false)}
         >
           Cancel
