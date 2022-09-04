@@ -8,10 +8,10 @@ import "./TaskList.css";
 export default function TaskList({ taskList, setTaskList }) {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
   const [newTaskName, setNewTaskName] = useState("");
-  const [newTaskOrder, setNewTaskOrder] = useState(0);
+  const [newTaskOrder, setNewTaskOrder] = useState("0");
   const [showEditTaskForm, setShowEditTaskForm] = useState(false);
   const [editTaskName, setEditTaskName] = useState("");
-  const [editTaskOrder, setEditTaskOrder] = useState(0);
+  const [editTaskOrder, setEditTaskOrder] = useState("0");
 
   function handleAddTaskClick() {
     setShowAddTaskForm(true);
@@ -24,6 +24,10 @@ export default function TaskList({ taskList, setTaskList }) {
 
   function handleAddTaskFormSubmit(e) {
     e.preventDefault();
+    if (taskList.find((task) => task.order === newTaskOrder)) {
+      alert("Task order already exists");
+      return;
+    }
     setTaskList(() =>
       [
         ...taskList,
@@ -39,6 +43,10 @@ export default function TaskList({ taskList, setTaskList }) {
   }
   function handleEditTaskFormSubmit(e, originalName, originalOrder) {
     e.preventDefault();
+    if (taskList.find((task) => task.order === editTaskOrder)) {
+      alert("Task order already exists");
+      return;
+    }
     setTaskList(() => {
       return taskList
         .map((task) => {
@@ -51,8 +59,8 @@ export default function TaskList({ taskList, setTaskList }) {
           } else {
             return task;
           }
-        })
-        .sort((a, b) => a.order - b.order);
+        })        
+        .sort((a, b) => a.order - b.order)
     });
     setEditTaskName("");
     setEditTaskOrder(0);
