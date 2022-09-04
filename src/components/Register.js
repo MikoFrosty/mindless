@@ -14,6 +14,7 @@ export default function Register({
       <form className="register-form" onSubmit={onSubmit}>
         <label htmlFor="email">Email:</label>
         <input
+          required
           type="text"
           name="email"
           value={registerEmail}
@@ -21,6 +22,7 @@ export default function Register({
         />
         <label htmlFor="password">Password:</label>
         <input
+          required
           type="password"
           name="password"
           value={registerPassword}
