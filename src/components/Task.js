@@ -10,21 +10,25 @@ export default function Task({
 
   const handleTaskDragStart = (e) => {
     e.dataTransfer.setData("order", order);
-    e.target.style.opacity = "0.4";
-    e.stopPropagation();
+    e.target.classList.add("dragging");
+    e.target.style.cursor = "grabbing";
   };
   const handleTaskDragEnd = (e) => {
-    e.target.style.opacity = "1";
+    e.target.classList.remove("dragging");
     e.target.classList.remove("over");
+    e.target.style.cursor = "grab";
   };
   const handleTaskDragEnter = (e) => {
-    e.target.classList.add("over");
+    if (!e.target.classList.contains("dragging") && e.target.classList.contains("task")) {
+      e.target.classList.add("over");
+    }
   };
   const handleTaskDragOver = (e) => {
     e.preventDefault();
   };
   const handleTaskDragLeave = (e) => {
     e.target.classList.remove("over");
+    e.target.style.cursor = "grab";
   };
   const handleTaskDrop = (e) => {
     e.preventDefault();
@@ -34,6 +38,7 @@ export default function Task({
     }
     e.target.classList.remove("over");
     e.stopPropagation();
+    e.target.style.cursor = "grab";
   };
 
   return (
