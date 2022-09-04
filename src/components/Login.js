@@ -14,6 +14,7 @@ export default function Login({
       <form className="login-form" onSubmit={onSubmit}>
         <label htmlFor="email">Email:</label>
         <input
+          required
           type="text"
           name="email"
           value={loginEmail}
@@ -21,6 +22,7 @@ export default function Login({
         />
         <label htmlFor="password">Password:</label>
         <input
+          required
           type="password"
           name="password"
           value={loginPassword}
