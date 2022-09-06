@@ -7,6 +7,7 @@ export default function ProtectedRoute({ children, user }) {
     if (!user) {
       navigate("/login", { replace: true });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return user ? children : null;
