@@ -15,6 +15,7 @@ export default function Register({
         <label htmlFor="email">Email:</label>
         <input
           required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           type="text"
           name="email"
           value={registerEmail}
@@ -23,6 +24,7 @@ export default function Register({
         <label htmlFor="password">Password:</label>
         <input
           required
+          pattern=".{6,}"
           type="password"
           name="password"
           value={registerPassword}
