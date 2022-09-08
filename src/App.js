@@ -18,17 +18,19 @@ import TaskList from "./components/TaskList";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
 
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [taskList, setTaskList] = useState(
-    () => JSON.parse(localStorage.getItem("taskList")) || []
-  );
+  const [taskList, setTaskList] = useState([]);
   const [user, setUser] = useState({});
-
+  const [userDoc, setUserDoc] = useState({});
   let navigate = useNavigate();
+
+  const db = getFirestore();
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -37,7 +39,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user?.uid) {
+      getDoc(doc(db, "users", user.uid))
+        .then((d) => {
+          console.log("Database Document Exists for User: " + d.exists());
+          if (d.exists()) {
+            setUserDoc(d.data());
+            setTaskList(d.data().taskList);
+          } else {
+            throw new Error("No Document Exists");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+
       navigate("/home", { replace: true });
     } else {
       navigate("/", { replace: true });
@@ -46,17 +62,27 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    localStorage.setItem("taskList", JSON.stringify(taskList));
+    if (user?.uid) {
+      setDoc(doc(db, "users", user.uid), {
+        taskList: taskList,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskList]);
 
   async function register(e) {
     e.preventDefault();
     try {
-      const user = await createUserWithEmailAndPassword(
+      const { user } = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
+
+      // Create new document in firestore
+      setDoc(doc(db, "users", user.uid), {
+        taskList: [],
+      });
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -66,7 +92,7 @@ function App() {
   async function login(e) {
     e.preventDefault();
     try {
-      const user = await signInWithEmailAndPassword(
+      const { user } = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
