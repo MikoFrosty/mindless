@@ -14,14 +14,14 @@ export default function StartRoutine({ taskList, setTaskList }) {
         if (index === currentTask && index === 0) {
           return {
             ...task,
-            startTime: routineStartTime,
-            endTime: Date.now(),
+            lastStart: routineStartTime,
+            lastEnd: Date.now(),
           };
         } else if (index === currentTask) {
           return {
             ...task,
-            startTime: prevTaskList[index - 1].endTime,
-            endTime: Date.now(),
+            lastStart: prevTaskList[index - 1].lastEnd,
+            lastEnd: Date.now(),
           };
         } else {
           return task;

@@ -32,9 +32,9 @@ export default function CompleteRoutine({ taskList }) {
               return (
                 <tr key={index}>
                   <td>{task.name}</td>
-                  <td>{new Date(task.startTime).toLocaleTimeString()}</td>
-                  <td>{new Date(task.endTime).toLocaleTimeString()}</td>
-                  <td>{timeDuration(task.startTime, task.endTime)}</td>
+                  <td>{new Date(task.lastStart).toLocaleTimeString()}</td>
+                  <td>{new Date(task.lastEnd).toLocaleTimeString()}</td>
+                  <td>{timeDuration(task.lastStart, task.lastEnd)}</td>
                 </tr>
               );
             })}
