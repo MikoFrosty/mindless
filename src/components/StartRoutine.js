@@ -1,8 +1,9 @@
+import { updateDoc } from "firebase/firestore";
 import { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./StartRoutine.css";
 
-export default function StartRoutine({ taskList, setTaskList }) {
+export default function StartRoutine({ taskList, setTaskList, onCompleteRoutine }) {
   const [currentTask, setCurrentTask] = useState(0);
   const { current: routineStartTime } = useRef(Date.now());
 
@@ -28,7 +29,12 @@ export default function StartRoutine({ taskList, setTaskList }) {
         }
       });
     });
-    lastTask() ? navigate("/home/complete") : setCurrentTask(currentTask + 1);
+    if (lastTask()) {
+      onCompleteRoutine(routineStartTime, Date.now());
+      navigate("/home/complete")
+    } else {
+      setCurrentTask(currentTask + 1);
+    }
   }
 
   function lastTask() {
