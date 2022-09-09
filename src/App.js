@@ -18,7 +18,7 @@ import TaskList from "./components/TaskList";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -63,7 +63,7 @@ function App() {
 
   useEffect(() => {
     if (user?.uid) {
-      setDoc(doc(db, "users", user.uid), {
+      updateDoc(doc(db, "users", user.uid), {
         taskList: taskList,
       });
     }
@@ -79,10 +79,16 @@ function App() {
         registerPassword
       );
 
-      // Create new document in firestore
+      // Create new documents in firestore Database
       setDoc(doc(db, "users", user.uid), {
         taskList: [],
+        email: registerEmail, 
       });
+      setDoc(doc(db, "timestamps", user.uid), {
+        lastStart: 0, 
+        lastEnd: 0, 
+        timestamps: [],
+      })
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -114,6 +120,14 @@ function App() {
     }
   }
 
+  async function handleCompleteRoutine(start, end) {
+    updateDoc(doc(db, "timestamps", user.uid), {
+      lastStart: start,
+      lastEnd: end,
+      timestamps: arrayUnion({ start, end, taskList }),
+    });
+  }
+
   return (
     <div className="App">
       <Routes>
@@ -132,7 +146,7 @@ function App() {
           path="/home/start"
           element={
             <ProtectedRoute user={user}>
-              <StartRoutine taskList={taskList} setTaskList={setTaskList} />
+              <StartRoutine taskList={taskList} setTaskList={setTaskList} onCompleteRoutine={handleCompleteRoutine}/>
             </ProtectedRoute>
           }
         />
