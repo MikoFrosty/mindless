@@ -1,0 +1,36 @@
+#history-page {
+  padding-top: 150px;
+  height: 100%;
+  width: 100%;
+}
+#history-page > h2 {
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+}
+.td-timestamp-delete {
+  text-align: center;
+  padding: 0 8px;
+  background-color: #f8f8f8;
+}
+.timestamp-delete-button {
+  color: black;
+  border: none;
+  background-color: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.timestamp-delete-button:hover {
+  color: #fabb00;
+}
+.timestamp-delete-button:active {
+  color: #fabb00;
+}
+.timestamp-delete-button:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #history-page > h2 {
+    font-size: 2rem;
+  }
+}
