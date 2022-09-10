@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { auth } from "./firebase-config";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./components/Login";
@@ -18,8 +19,6 @@ import TaskList from "./components/TaskList";
 import History from "./components/History";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
-
-import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -129,6 +128,17 @@ function App() {
     });
   }
 
+  async function getHistory() {
+    const timestampRaw = await getDoc(doc(db, "timestamps", user.uid));
+    return timestampRaw.data() ?? [];
+  }
+
+  async function handleTimestampDelete(timestamp) {
+    updateDoc(doc(db, "timestamps", user.uid), {
+      timestamps: arrayRemove(timestamp),
+    });
+  }
+
   return (
     <div className="App">
       <Routes>
@@ -174,7 +184,7 @@ function App() {
           path="/home/history"
           element={
             <ProtectedRoute user={user}>
-              <History />
+              <History getHistory={getHistory} onTimestampDelete={handleTimestampDelete}/>
             </ProtectedRoute>
           }
         />
