@@ -33,6 +33,7 @@
 
 .task-edit-button {
   margin-right: 20px;
+  color: black;
   border: none;
   background-color: transparent;
   font-size: 1.8rem;
@@ -49,6 +50,7 @@
 }
 
 .task-delete-button {
+  color: black;
   margin-left: 20px;
   border: none;
   background-color: transparent;
