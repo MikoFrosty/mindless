@@ -18,6 +18,9 @@ export default function Home({ user }) {
         <Link id="tasklist-button" to="/home/tasklist">
           <i className="las la-edit"></i> EDIT/VIEW TASKS
         </Link>
+        <Link id="history-button" to="/home/history">
+          <i className="las la-history"></i> VIEW HISTORY
+        </Link>
       </div>
     </>
   );
