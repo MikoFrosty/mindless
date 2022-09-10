@@ -15,6 +15,7 @@ import Home from "./components/Home";
 import StartRoutine from "./components/StartRoutine";
 import CompleteRoutine from "./components/CompleteRoutine";
 import TaskList from "./components/TaskList";
+import History from "./components/History";
 import Profile from "./components/Profile";
 import Landing from "./components/Landing";
 
@@ -165,6 +166,15 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <TaskList taskList={taskList} setTaskList={setTaskList} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/home/history"
+          element={
+            <ProtectedRoute user={user}>
+              <History />
             </ProtectedRoute>
           }
         />
