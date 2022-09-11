@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import timeDuration from "../utils/timeDuration";
+import timeDuration from "../../utils/timeDuration";
 import "./CompleteRoutine.css";
 
 export default function CompleteRoutine({ taskList }) {

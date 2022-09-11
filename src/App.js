@@ -8,17 +8,17 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { auth } from "./firebase-config";
-import ProtectedRoute from "./ProtectedRoute";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import { auth } from "./utils/firebase-config";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import Login from "./components/landing/Login";
+import Register from "./components/landing/Register";
 import Home from "./components/Home";
-import StartRoutine from "./components/StartRoutine";
-import CompleteRoutine from "./components/CompleteRoutine";
-import TaskList from "./components/TaskList";
+import StartRoutine from "./components/routine/StartRoutine";
+import CompleteRoutine from "./components/routine/CompleteRoutine";
+import TaskList from "./components/task/TaskList";
 import History from "./components/History";
 import Profile from "./components/Profile";
-import Landing from "./components/Landing";
+import Landing from "./components/landing/Landing";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
