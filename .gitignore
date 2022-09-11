@@ -24,4 +24,3 @@ yarn-error.log*
 
 # firebase
 /src/test.mjs
-/src/.env
