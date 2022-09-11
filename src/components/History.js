@@ -16,6 +16,18 @@ export default function History({ getHistory, onTimestampDelete }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [historyUpdated]);
 
+  function handleDeleteClick(tsData) {
+    // prompt user to confirm deletion
+    const confirm = window.confirm(
+      `Are you sure you want to delete this timestamp?`
+    );
+    if (confirm) {
+      onTimestampDelete(tsData).then(() =>
+        setHistoryUpdated((prev) => prev + 1)
+      );
+    }
+  }
+
   const historyList = history?.timestamps
     ?.map((timestamp, index, arr) => {
       const startDate = new Date(timestamp.start).toLocaleDateString("en-US", {
@@ -37,6 +49,7 @@ export default function History({ getHistory, onTimestampDelete }) {
         second: "numeric",
       });
       const duration = timeDuration(timestamp.start, timestamp.end);
+
       return (
         <tr key={index}>
           <td>{startDate}</td>
@@ -46,11 +59,7 @@ export default function History({ getHistory, onTimestampDelete }) {
           <td className="td-timestamp-delete">
             <button
               className="timestamp-delete-button"
-              onClick={() => {
-                onTimestampDelete(arr[index]).then(
-                  setHistoryUpdated((prev) => prev + 1)
-                );
-              }}
+              onClick={() => handleDeleteClick(arr[index])}
             >
               <i className="las la-trash"></i>
             </button>
