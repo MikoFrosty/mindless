@@ -27,7 +27,6 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [user, setUser] = useState({});
-  const [userDoc, setUserDoc] = useState({});
   let navigate = useNavigate();
 
   const db = getFirestore();
@@ -44,7 +43,6 @@ function App() {
         .then((d) => {
           console.log("Database Document Exists for User: " + d.exists());
           if (d.exists()) {
-            setUserDoc(d.data());
             setTaskList(d.data().taskList);
           } else {
             throw new Error("No Document Exists");
