@@ -5,10 +5,10 @@ import { getAuth } from "firebase/auth";
 //import * as dotenv from "dotenv";
 //dotenv.config();
 
-const { apiKey } = process.env.FIREBASE_API_KEY;
+const { FIREBASE_API_KEY } = process.env;
 
 const firebaseConfig = {
-  apiKey,
+  apiKey: FIREBASE_API_KEY,
   authDomain: "mindless-34ad8.firebaseapp.com",
   projectId: "mindless-34ad8",
   storageBucket: "mindless-34ad8.appspot.com",
