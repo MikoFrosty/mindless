@@ -60,17 +60,16 @@
   max-width: 500px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
-#add-task-form input[type="submit"]:hover {
-  background-color: #fff;
-  color: #004dcb;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+@media (hover: hover) {
+  #add-task-form input[type="submit"]:hover {
+    background-color: #fff;
+    color: #004dcb;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+  }
 }
 #add-task-form input[type="submit"]:active {
   background-color: #fff;
   color: #004dcb;
-}
-#add-task-form input[type="submit"]:focus {
-  outline: none;
 }
 #cancel-add-task-button {
   text-decoration: none;
@@ -87,15 +86,14 @@
   max-width: 500px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
-#cancel-add-task-button:hover {
-  background-color: #fff;
-  color: #004dcb;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+@media (hover: hover) {
+  #cancel-add-task-button:hover {
+    background-color: #fff;
+    color: #004dcb;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+  }
 }
 #cancel-add-task-button:active {
   background-color: #fff;
   color: #004dcb;
-}
-#cancel-add-task-button:focus {
-  outline: none;
 }

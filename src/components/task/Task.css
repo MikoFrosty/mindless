@@ -13,7 +13,7 @@
   cursor: grab;
 }
 .dragging {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 .over {
   position: relative;
@@ -39,14 +39,13 @@
   font-size: 1.8rem;
   cursor: pointer;
 }
-.task-edit-button:hover {
-  color: #fabb00;
+@media (hover: hover) {
+  .task-edit-button:hover {
+    color: #fabb00;
+  }
 }
 .task-edit-button:active {
   color: #fabb00;
-}
-.task-edit-button:focus {
-  outline: none;
 }
 
 .task-delete-button {
@@ -57,14 +56,13 @@
   font-size: 1.8rem;
   cursor: pointer;
 }
-.task-delete-button:hover {
-  color: #fabb00;
+@media (hover: hover) {
+  .task-delete-button:hover {
+    color: #fabb00;
+  }
 }
 .task-delete-button:active {
   color: #fabb00;
-}
-.task-delete-button:focus {
-  outline: none;
 }
 
 .task-name-display {

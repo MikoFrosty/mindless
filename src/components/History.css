@@ -19,14 +19,13 @@
   font-size: 1.8rem;
   cursor: pointer;
 }
-.timestamp-delete-button:hover {
-  color: #fabb00;
+@media (hover: hover) {
+  .timestamp-delete-button:hover {
+    color: #fabb00;
+  }
 }
 .timestamp-delete-button:active {
   color: #fabb00;
-}
-.timestamp-delete-button:focus {
-  outline: none;
 }
 
 @media only screen and (max-width: 600px) {

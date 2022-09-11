@@ -59,3 +59,10 @@ tr:nth-child(even) {
     font-size: 0.8rem;
   }
 }
+
+.button:focus-visible {
+  outline: 2px dotted black;
+}
+.button:focus:not(:focus-visible) {
+  outline: none;
+}
