@@ -6,10 +6,10 @@ export default function Landing() {
     <div id="landing">
       <h1>MindLess</h1>
       <img src="./logo512.png" alt="mindless logo" />
-      <Link className="login-button" to="/login">
+      <Link className="login-button button" to="/login">
         Login
       </Link>
-      <Link className="register-button" to="/register">
+      <Link className="register-button button" to="/register">
         Create Account
       </Link>
     </div>

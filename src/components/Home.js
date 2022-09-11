@@ -12,13 +12,13 @@ export default function Home({ user }) {
         hideBackBtn={true}
       />
       <div id="home-page">
-        <Link id="start-button" to="/home/start">
+        <Link className="button" id="start-button" to="/home/start">
           Start Routine
         </Link>
-        <Link id="tasklist-button" to="/home/tasklist">
+        <Link className="button" id="tasklist-button" to="/home/tasklist">
           <i className="las la-edit"></i> EDIT/VIEW TASKS
         </Link>
-        <Link id="history-button" to="/home/history">
+        <Link className="button" id="history-button" to="/home/history">
           <i className="las la-history"></i> VIEW HISTORY
         </Link>
       </div>

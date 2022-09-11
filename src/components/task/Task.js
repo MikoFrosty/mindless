@@ -56,14 +56,14 @@ export default function Task({
       onDragLeave={handleTaskDragLeave}
     >
       <button
-        className="task-edit-button"
+        className="task-edit-button button"
         onClick={() => onEditTaskClick(task)}
       >
         <i className="las la-edit"></i>
       </button>
       <p className="task-name-display">{name}</p>
       <p className="task-order-display">Order: {order}</p>
-      <button className="task-delete-button" onClick={() => onTaskDelete(name)}>
+      <button className="task-delete-button button" onClick={() => onTaskDelete(name)}>
         <i className="las la-trash"></i>
       </button>
     </div>

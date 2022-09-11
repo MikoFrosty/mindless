@@ -14,7 +14,7 @@ export default function Header({
     <div id="header">
       <div id="header-content">
         <button
-          className={hideBackBtn ? "hide" : undefined}
+          className={hideBackBtn ? "hide" : "button"}
           onClick={() => navigate(-1)}
         >
           <i className="las la-arrow-circle-left"></i>
@@ -23,7 +23,7 @@ export default function Header({
         <Link
           to="/home/profile"
           id="profile-button"
-          className={hideProfileBtn ? "hide" : undefined}
+          className={hideProfileBtn ? "hide" : "button"}
         >
           <i className="las la-user-circle"></i>
         </Link>

@@ -38,8 +38,9 @@ export default function AddTaskForm({
           inputMode="numeric"
           pattern="[0-9]+"
         />
-        <input type="submit" value="Add Task" />
+        <input className="button" type="submit" value="Add Task" />
         <button
+          className="button"
           id="cancel-add-task-button"
           type="button"
           onClick={handleCancelClick}

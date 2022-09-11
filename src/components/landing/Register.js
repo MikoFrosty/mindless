@@ -30,9 +30,9 @@ export default function Register({
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
-        <input type="submit" value="Register" />
+        <input className="button" type="submit" value="Register" />
       </form>
-      <Link className="login-button" to="/login">Login</Link>
+      <Link className="login-button button" to="/login">Login</Link>
     </div>
   );
 }

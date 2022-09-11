@@ -41,8 +41,9 @@ export default function EditTaskForm({
           inputMode="numeric"
           pattern="[0-9]+"
         />
-        <input type="submit" value="Edit Task" />
+        <input className="button" type="submit" value="Edit Task" />
         <button
+          className="button"
           id="cancel-edit-task-button"
           type="button"
           onClick={() => setShowEditTaskForm(false)}

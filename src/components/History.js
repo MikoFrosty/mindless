@@ -58,7 +58,7 @@ export default function History({ getHistory, onTimestampDelete }) {
           <td>{duration}</td>
           <td className="td-timestamp-delete">
             <button
-              className="timestamp-delete-button"
+              className="timestamp-delete-button button"
               onClick={() => handleDeleteClick(arr[index])}
             >
               <i className="las la-trash"></i>

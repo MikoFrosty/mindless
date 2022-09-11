@@ -135,7 +135,7 @@ export default function TaskList({ taskList, setTaskList }) {
             setEditTaskOrder={setEditTaskOrder}
           />
         ) : null}
-        <button id="add-task-button" onClick={handleAddTaskClick}>
+        <button className="button" id="add-task-button" onClick={handleAddTaskClick}>
           <i className="las la-plus-circle"></i> Add Task
         </button>
         <h3 id="task-list-label">Task List</h3>

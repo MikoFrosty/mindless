@@ -8,7 +8,7 @@ export default function Profile({ user, logout }) {
       <div id="profile-page">
         <h4>Logged in as: {user.email}</h4>
         <p>Profile editing currently unavailable</p>
-        <button id="logout-button" onClick={logout}>Logout</button>
+        <button className="button" id="logout-button" onClick={logout}>Logout</button>
       </div>
     </>
   );
