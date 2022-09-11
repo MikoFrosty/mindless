@@ -87,7 +87,8 @@ function App() {
         lastEnd: 0, 
         timestamps: [],
       })
-      console.log(user);
+      setRegisterEmail("");
+      setRegisterPassword("");
     } catch (error) {
       console.log(error.message);
     }
