@@ -1,14 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-// For Development
-//import * as dotenv from "dotenv";
-//dotenv.config();
-
-const { FIREBASE_API_KEY } = process.env;
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
+  apiKey: "AIzaSyBgJrGPFFySGgh4cSnl4Xv87gaUbFFRTwY",
   authDomain: "mindless-34ad8.firebaseapp.com",
   projectId: "mindless-34ad8",
   storageBucket: "mindless-34ad8.appspot.com",
