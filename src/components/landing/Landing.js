@@ -1,5 +1,6 @@
 import "./Landing.css";
 import { Link } from "react-router-dom";
+import Footer from "../Footer";
 
 export default function Landing() {
   return (
@@ -12,6 +13,7 @@ export default function Landing() {
       <Link className="register-button button" to="/register">
         Create Account
       </Link>
+      <Footer />
     </div>
   );
 }
