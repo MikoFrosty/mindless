@@ -16,6 +16,7 @@ export default function AddTaskForm({
 
   return (
     <div id="add-task-form-div">
+      <h3>Add Task</h3>
       <form id="add-task-form" onSubmit={onAddTaskFormSubmit}>
         <label htmlFor="task-name">Task Name:</label>
         <input

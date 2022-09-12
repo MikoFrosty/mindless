@@ -14,6 +14,7 @@ export default function EditTaskForm({
 
   return (
     <div id="edit-task-form-div">
+      <h3>Edit Task</h3>
       <form
         id="edit-task-form"
         onSubmit={(event) =>
