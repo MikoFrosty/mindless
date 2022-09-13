@@ -84,9 +84,14 @@ export default function TaskList({ taskList, setTaskList }) {
   }
 
   function handleTaskDelete(name) {
-    setTaskList(() => {
-      return taskList.filter((task) => task.name !== name);
-    });
+    const confirm = window.confirm(
+      `Are you sure you want to delete this task?`
+    );
+    if (confirm) {
+      setTaskList(() => {
+        return taskList.filter((task) => task.name !== name);
+      });
+    }
   }
 
   function handleTaskDrop(orderA, orderB) {
@@ -135,7 +140,11 @@ export default function TaskList({ taskList, setTaskList }) {
             setEditTaskOrder={setEditTaskOrder}
           />
         ) : null}
-        <button className="button" id="add-task-button" onClick={handleAddTaskClick}>
+        <button
+          className="button"
+          id="add-task-button"
+          onClick={handleAddTaskClick}
+        >
           <i className="las la-plus-circle"></i> Add Task
         </button>
         <h3 id="task-list-label">Task List</h3>
