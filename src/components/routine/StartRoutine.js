@@ -46,7 +46,7 @@ export default function StartRoutine({ taskList, setTaskList, onCompleteRoutine 
         <h2>Current Task:</h2>
         <h3>{taskList[currentTask].name}</h3>
         <button className="button" id="next-task-button" onClick={handleTaskClick}>
-          {lastTask() ? "Complete" : "Next Task"}
+          {lastTask() ? "Complete" : <p>Done <span className="no-break small">(Next Task)</span></p>}
         </button>
       </>
     );
