@@ -65,6 +65,13 @@
   margin: 50px;
   text-align: center;
 }
+.no-break {
+  white-space: nowrap;
+}
+.small {
+  font-size: 1rem;
+  display: block;
+}
 
 @media only screen and (max-width: 600px) {
   #start-routine-page {
