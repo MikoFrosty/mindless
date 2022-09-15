@@ -23,7 +23,7 @@ export default function AddTaskForm({
           type="text"
           name="task-name"
           required
-          pattern="^[ ]*[A-Za-z0-9]+[A-Za-z0-9 ]*"
+          pattern="^[ ]*[\S]+[\s\S]*"
           value={newTaskName}
           onChange={(e) => setNewTaskName(e.target.value)}
         />
