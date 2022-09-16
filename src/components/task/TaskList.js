@@ -35,6 +35,8 @@ export default function TaskList({ taskList, setTaskList }) {
 
   function handleAddTaskFormSubmit(e) {
     e.preventDefault();
+    const additionalData = e.target["additional-data"].value;
+    
     if (taskList.find((task) => task.order === newTaskOrder)) {
       alert("Task order already exists");
       return;
@@ -45,6 +47,7 @@ export default function TaskList({ taskList, setTaskList }) {
         {
           name: newTaskName.trim(),
           order: newTaskOrder,
+          additionalDataType: additionalData,
         },
       ].sort((a, b) => a.order - b.order)
     );
@@ -54,6 +57,8 @@ export default function TaskList({ taskList, setTaskList }) {
   }
   function handleEditTaskFormSubmit(e, originalName, originalOrder) {
     e.preventDefault();
+    const additionalData = e.target["additional-data"].value;
+
     if (
       taskList.find(
         (task) =>
@@ -71,6 +76,7 @@ export default function TaskList({ taskList, setTaskList }) {
               ...task,
               name: editTaskName.trim(),
               order: editTaskOrder,
+              additionalDataType: additionalData,
             };
           } else {
             return task;
