@@ -42,6 +42,19 @@ export default function EditTaskForm({
           inputMode="numeric"
           pattern="[0-9]+"
         />
+        <label htmlFor="additional-data">Task Data Collection Type:</label>
+        <select
+          defaultValue="none"
+          name="additional-data"
+          id="additional-data"
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+        >
+          <option value="none">None</option>
+          <option value="text">Text</option>
+          <option value="num">Number</option>
+        </select>
         <input className="button" type="submit" value="Edit Task" />
         <button
           className="button"
