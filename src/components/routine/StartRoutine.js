@@ -1,70 +1,86 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import ShowTask from "./ShowTask";
 import "./StartRoutine.css";
 
-export default function StartRoutine({ taskList, setTaskList, onCompleteRoutine }) {
-  const [currentTask, setCurrentTask] = useState(0);
+export default function StartRoutine({
+  taskList,
+  setTaskList,
+  onCompleteRoutine,
+}) {
+  const [taskIndex, setTaskIndex] = useState(0);
+  const [additionalData, setAdditionalData] = useState("");
   const { current: routineStartTime } = useRef(Date.now());
+  const [skipCount, setSkipCount] = useState(true);
 
   const navigate = useNavigate();
 
   function handleTaskClick() {
     setTaskList((prevTaskList) => {
       return prevTaskList.map((task, index) => {
-        if (index === currentTask && index === 0) {
+        if (index === taskIndex) {
           return {
             ...task,
-            lastStart: routineStartTime,
+            lastStart:
+              index === 0 ? routineStartTime : prevTaskList[index - 1].lastEnd,
             lastEnd: Date.now(),
-          };
-        } else if (index === currentTask) {
-          return {
-            ...task,
-            lastStart: prevTaskList[index - 1].lastEnd,
-            lastEnd: Date.now(),
+            additionalData,
           };
         } else {
           return task;
         }
       });
     });
-    if (lastTask()) {
-      onCompleteRoutine(routineStartTime, Date.now());
-      navigate("/home/complete")
-    } else {
-      setCurrentTask(currentTask + 1);
-    }
   }
+
+  useEffect(() => {
+    // Don't run on first render
+    if (skipCount) setSkipCount(false);
+    if (!skipCount) {
+      if (lastTask()) {
+        onCompleteRoutine(routineStartTime, Date.now());
+        navigate("/home/complete");
+      } else {
+        setTaskIndex((prevIndex) => prevIndex + 1);
+        setAdditionalData("");
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskList]);
 
   function lastTask() {
-    return currentTask === taskList.length - 1;
-  }
-
-  function CurrentTask() {
-    return (
-      <>
-        <h2>Current Task:</h2>
-        <h3>{taskList[currentTask].name}</h3>
-        <button className="button" id="next-task-button" onClick={handleTaskClick}>
-          {lastTask() ? "Complete" : <p>Done <span className="no-break small">(Next Task)</span></p>}
-        </button>
-      </>
-    );
+    return taskIndex === taskList.length - 1;
   }
 
   function NoTask() {
     return (
       <>
         <p>No current tasks!</p>
-        <p className="no-tasks-desc">Please go back and add some using the edit/view tool.</p>
-        <Link className="button" id="home-button" to="/home">Home</Link>
+        <p className="no-tasks-desc">
+          Please go back and add some using the edit/view tool.
+        </p>
+        <Link className="button" id="home-button" to="/home">
+          Home
+        </Link>
       </>
     );
   }
 
   return (
     <div id="start-routine-page">
-      <div id="current-task">{taskList.length > 0 ? <CurrentTask /> : <NoTask />}</div>
+      <div id="current-task">
+        {taskList.length > 0 ? (
+          <ShowTask
+            onTaskClick={handleTaskClick}
+            currentTask={taskList[taskIndex]}
+            lastTask={lastTask}
+            additionalData={additionalData}
+            setAdditionalData={setAdditionalData}
+          />
+        ) : (
+          <NoTask />
+        )}
+      </div>
     </div>
   );
 }
