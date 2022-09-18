@@ -12,7 +12,9 @@ export default function TaskList({ taskList, setTaskList }) {
   const [showEditTaskForm, setShowEditTaskForm] = useState(false);
   const [editTaskName, setEditTaskName] = useState("");
   const [editTaskOrder, setEditTaskOrder] = useState("0");
+  const [taskDataType, setTaskDataType] = useState("none");
 
+  // Ensure that the task order is stored as a number
   useEffect(() => {
     if (typeof newTaskOrder !== "number") {
       setNewTaskOrder(Number.parseInt(newTaskOrder, 10));
@@ -27,9 +29,10 @@ export default function TaskList({ taskList, setTaskList }) {
   function handleAddTaskClick() {
     setShowAddTaskForm(true);
   }
-  function handleEditTaskClick({ name, order }) {
+  function handleEditTaskClick({ name, order, additionalDataType }) {
     setEditTaskName(name);
     setEditTaskOrder(order);
+    setTaskDataType(additionalDataType);
     setShowEditTaskForm(true);
   }
 
@@ -55,10 +58,11 @@ export default function TaskList({ taskList, setTaskList }) {
     setNewTaskOrder(0);
     setShowAddTaskForm(false);
   }
-  function handleEditTaskFormSubmit(e, originalName, originalOrder) {
+  function handleEditTaskFormSubmit(e, originalName, originalOrder, originalDataType) {
     e.preventDefault();
     const additionalData = e.target["additional-data"].value;
 
+    // Check if new task order is already taken
     if (
       taskList.find(
         (task) =>
@@ -86,6 +90,7 @@ export default function TaskList({ taskList, setTaskList }) {
     });
     setEditTaskName("");
     setEditTaskOrder(0);
+    setTaskDataType("none");
     setShowEditTaskForm(false);
   }
 
@@ -144,6 +149,8 @@ export default function TaskList({ taskList, setTaskList }) {
             setEditTaskName={setEditTaskName}
             editTaskOrder={editTaskOrder}
             setEditTaskOrder={setEditTaskOrder}
+            taskDataType={taskDataType}
+            setTaskDataType={setTaskDataType}
           />
         ) : null}
         <button
