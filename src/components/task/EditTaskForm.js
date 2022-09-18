@@ -8,9 +8,12 @@ export default function EditTaskForm({
   setEditTaskName,
   editTaskOrder,
   setEditTaskOrder,
+  taskDataType,
+  setTaskDataType,
 }) {
   const { current: originalTaskName } = useRef(editTaskName);
   const { current: originalTaskOrder } = useRef(editTaskOrder);
+  const { current: originalTaskDataType } = useRef(taskDataType);
 
   return (
     <div id="edit-task-form-div">
@@ -18,7 +21,7 @@ export default function EditTaskForm({
       <form
         id="edit-task-form"
         onSubmit={(event) =>
-          onEditTaskFormSubmit(event, originalTaskName, originalTaskOrder)
+          onEditTaskFormSubmit(event, originalTaskName, originalTaskOrder, originalTaskDataType)
         }
       >
         <label htmlFor="task-name">Task Name:</label>
@@ -44,12 +47,10 @@ export default function EditTaskForm({
         />
         <label htmlFor="additional-data">Task Data Collection Type:</label>
         <select
-          defaultValue="none"
+          value={taskDataType}
           name="additional-data"
           id="additional-data"
-          onChange={(e) => {
-            console.log(e.target.value);
-          }}
+          onChange={(e) => setTaskDataType(e.target.value)}
         >
           <option value="none">None</option>
           <option value="text">Text</option>
