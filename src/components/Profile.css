@@ -2,12 +2,25 @@
   padding-top: 200px;
 }
 
+#profile-page h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 30px;
+}
 #profile-page h4 {
   font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 30px;
 }
-
+input#confirm {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+label {
+  vertical-align: middle;
+}
 #logout-button {
   margin-top: 50px;
   text-decoration: none;
