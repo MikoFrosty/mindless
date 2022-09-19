@@ -1,10 +1,36 @@
-export default function ShowTask({ onTaskClick, currentTask, lastTask, additionalData, setAdditionalData }) {
+export default function ShowTask({
+  onTaskClick,
+  currentTask,
+  lastTask,
+  additionalData,
+  setAdditionalData,
+}) {
   const dataType = currentTask.additionalDataType;
 
   function taskInput() {
+    if (dataType === "num") {
+      return (
+        <div id="task-input">
+          <input
+            type="number"
+            value={additionalData}
+            onChange={(e) => setAdditionalData(Number(e.target.value))}
+            placeholder="Enter a number..."
+            inputMode="numeric"
+            pattern="[0-9]+"
+          />
+        </div>
+      );
+    }
     return (
       <div id="task-input">
-        <input type="text" value={additionalData} placeholder="Enter data here" onChange={(e) => setAdditionalData(e.target.value)}/>
+        <input
+          type="text"
+          value={additionalData}
+          pattern="^[ ]*[\S]+[\s\S]*"
+          placeholder="Enter text..."
+          onChange={(e) => setAdditionalData(e.target.value)}
+        />
       </div>
     );
   }
