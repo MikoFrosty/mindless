@@ -6,6 +6,7 @@ import "./StartRoutine.css";
 export default function StartRoutine({
   taskList,
   setTaskList,
+  taskConfirm,
   onCompleteRoutine,
 }) {
   const [taskIndex, setTaskIndex] = useState(0);
@@ -16,6 +17,14 @@ export default function StartRoutine({
   const navigate = useNavigate();
 
   function handleTaskClick() {
+    if (taskConfirm) {
+      const confirm = window.confirm(
+        `Move on to the next task? You will not be able to go back to this task.`
+      );
+      if (!confirm) {
+        return;
+      }
+    }
     setTaskList((prevTaskList) => {
       return prevTaskList.map((task, index) => {
         if (index === taskIndex) {
@@ -45,7 +54,7 @@ export default function StartRoutine({
         setAdditionalData("");
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskList]);
 
   function lastTask() {
