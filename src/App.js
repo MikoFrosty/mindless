@@ -26,6 +26,7 @@ function App() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [taskList, setTaskList] = useState([]);
+  const [taskConfirm, setTaskConfirm] = useState(false);
   const [user, setUser] = useState({});
   let navigate = useNavigate();
 
@@ -156,7 +157,7 @@ function App() {
           path="/home/start"
           element={
             <ProtectedRoute user={user}>
-              <StartRoutine taskList={taskList} setTaskList={setTaskList} onCompleteRoutine={handleCompleteRoutine}/>
+              <StartRoutine taskList={taskList} setTaskList={setTaskList} onCompleteRoutine={handleCompleteRoutine} taskConfirm={taskConfirm}/>
             </ProtectedRoute>
           }
         />
@@ -192,7 +193,7 @@ function App() {
           path="/home/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile user={user} logout={logout} />
+              <Profile user={user} logout={logout} taskConfirm={taskConfirm} setTaskConfirm={setTaskConfirm}/>
             </ProtectedRoute>
           }
         />
