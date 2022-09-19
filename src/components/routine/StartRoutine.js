@@ -74,6 +74,8 @@ export default function StartRoutine({
             onTaskClick={handleTaskClick}
             currentTask={taskList[taskIndex]}
             lastTask={lastTask}
+            taskIndex={taskIndex}
+            setTaskIndex={setTaskIndex}
             additionalData={additionalData}
             setAdditionalData={setAdditionalData}
           />
