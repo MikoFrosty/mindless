@@ -18,8 +18,8 @@ export default function ShowTask({
             value={additionalData}
             onChange={(e) => setAdditionalData(Number(e.target.value))}
             placeholder="Enter a number..."
-            inputMode="numeric"
-            pattern="[0-9]+"
+            inputMode="decimal"
+            pattern="[0-9.]+"
           />
         </div>
       );
