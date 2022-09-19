@@ -2,6 +2,8 @@ export default function ShowTask({
   onTaskClick,
   currentTask,
   lastTask,
+  taskIndex,
+  setTaskIndex,
   additionalData,
   setAdditionalData,
 }) {
@@ -49,6 +51,18 @@ export default function ShowTask({
         )}
       </button>
       {(dataType === "text" || dataType === "num") && taskInput()}
+
+      {/*  // does not work, but maybe add feature later
+      {taskIndex > 0 && (
+        <button
+          className="button"
+          id="previous-task-button"
+          onClick={(prev) => setTaskIndex(prev - 1)}
+        >
+          Previous Task
+        </button>
+      )}
+        */}
     </>
   );
 }
