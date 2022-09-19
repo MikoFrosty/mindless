@@ -17,7 +17,6 @@ export default function History({ getHistory, onTimestampDelete }) {
   }, [historyUpdated]);
 
   function handleDeleteClick(tsData) {
-    // prompt user to confirm deletion
     const confirm = window.confirm(
       `Are you sure you want to delete this timestamp?`
     );
