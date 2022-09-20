@@ -4,6 +4,7 @@ import EditTaskForm from "./EditTaskForm";
 import Task from "./Task";
 import { useState, useEffect } from "react";
 import "./TaskList.css";
+import "./TaskForm.css";
 
 export default function TaskList({ taskList, setTaskList }) {
   const [showAddTaskForm, setShowAddTaskForm] = useState(false);
