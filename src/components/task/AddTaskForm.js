@@ -1,5 +1,3 @@
-import "./AddTaskForm.css";
-
 export default function AddTaskForm({
   setShowAddTaskForm,
   onAddTaskFormSubmit,
@@ -15,9 +13,9 @@ export default function AddTaskForm({
   }
 
   return (
-    <div id="add-task-form-div">
+    <div className="task-form-div">
       <h3>Add Task</h3>
-      <form id="add-task-form" onSubmit={onAddTaskFormSubmit}>
+      <form className="task-form" onSubmit={onAddTaskFormSubmit}>
         <label htmlFor="task-name">Task Name:</label>
         <input
           type="text"
@@ -43,7 +41,7 @@ export default function AddTaskForm({
         <select
           defaultValue="none"
           name="additional-data"
-          id="additional-data"
+          className="additional-data"
           onChange={(e) => {
             console.log(e.target.value);
           }}
@@ -54,8 +52,7 @@ export default function AddTaskForm({
         </select>
         <input className="button" type="submit" value="Add Task" />
         <button
-          className="button"
-          id="cancel-add-task-button"
+          className="button cancel-task-button"
           type="button"
           onClick={handleCancelClick}
         >

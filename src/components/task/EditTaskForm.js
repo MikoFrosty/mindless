@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import "./EditTaskForm.css";
 
 export default function EditTaskForm({
   setShowEditTaskForm,
@@ -16,10 +15,10 @@ export default function EditTaskForm({
   const { current: originalTaskDataType } = useRef(taskDataType);
 
   return (
-    <div id="edit-task-form-div">
+    <div className="task-form-div">
       <h3>Edit Task</h3>
       <form
-        id="edit-task-form"
+        className="task-form"
         onSubmit={(event) =>
           onEditTaskFormSubmit(event, originalTaskName, originalTaskOrder, originalTaskDataType)
         }
@@ -49,7 +48,7 @@ export default function EditTaskForm({
         <select
           value={taskDataType}
           name="additional-data"
-          id="additional-data"
+          className="additional-data"
           onChange={(e) => setTaskDataType(e.target.value)}
         >
           <option value="none">None</option>
@@ -58,8 +57,7 @@ export default function EditTaskForm({
         </select>
         <input className="button" type="submit" value="Edit Task" />
         <button
-          className="button"
-          id="cancel-edit-task-button"
+          className="button cancel-task-button"
           type="button"
           onClick={() => setShowEditTaskForm(false)}
         >
