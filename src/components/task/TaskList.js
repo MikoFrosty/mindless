@@ -1,98 +1,87 @@
 import Header from "../Header";
-import AddTaskForm from "./AddTaskForm";
-import EditTaskForm from "./EditTaskForm";
+import TaskForm from "./TaskForm";
 import Task from "./Task";
 import { useState, useEffect } from "react";
 import "./TaskList.css";
 import "./TaskForm.css";
 
 export default function TaskList({ taskList, setTaskList }) {
-  const [showAddTaskForm, setShowAddTaskForm] = useState(false);
-  const [newTaskName, setNewTaskName] = useState("");
-  const [newTaskOrder, setNewTaskOrder] = useState("0");
-  const [showEditTaskForm, setShowEditTaskForm] = useState(false);
-  const [editTaskName, setEditTaskName] = useState("");
-  const [editTaskOrder, setEditTaskOrder] = useState("0");
+  const [showTaskForm, setShowTaskForm] = useState(false);
+  const [taskName, setTaskName] = useState("");
+  const [taskOrder, setTaskOrder] = useState("0");
   const [taskDataType, setTaskDataType] = useState("none");
+  const [formType, setFormType] = useState("add");
 
   // Ensure that the task order is stored as a number
   useEffect(() => {
-    if (typeof newTaskOrder !== "number") {
-      setNewTaskOrder(Number.parseInt(newTaskOrder, 10));
+    if (typeof taskOrder !== "number") {
+      setTaskOrder(Number.parseInt(taskOrder, 10));
     }
-  }, [newTaskOrder]);
-  useEffect(() => {
-    if (typeof editTaskOrder !== "number") {
-      setEditTaskOrder(Number.parseInt(editTaskOrder, 10));
-    }
-  }, [editTaskOrder]);
-
+  }, [taskOrder]);
+  
   function handleAddTaskClick() {
-    setShowAddTaskForm(true);
+    setFormType("add");
+    setShowTaskForm(true);
   }
   function handleEditTaskClick({ name, order, additionalDataType }) {
-    setEditTaskName(name);
-    setEditTaskOrder(order);
+    setFormType("edit");
+    setTaskName(name);
+    setTaskOrder(order);
     setTaskDataType(additionalDataType);
-    setShowEditTaskForm(true);
+    setShowTaskForm(true);
   }
 
-  function handleAddTaskFormSubmit(e) {
+  function handleTaskFormSubmit(e, originalName = undefined, originalOrder = undefined) {
     e.preventDefault();
     const additionalData = e.target["additional-data"].value;
     
-    if (taskList.find((task) => task.order === newTaskOrder)) {
-      alert("Task order already exists");
-      return;
+    if (formType === "edit") {
+        // Check if new task order is already taken
+      if (
+        taskList.find(
+          (task) =>
+            task.order === taskOrder && taskOrder !== originalOrder
+        )
+      ) {
+        alert("Task order already exists");
+        return;
+      }
+      setTaskList(() => {
+        return taskList
+          .map((task) => {
+            if (task.name === originalName && task.order === originalOrder) {
+              return {
+                ...task,
+                name: taskName.trim(),
+                order: taskOrder,
+                additionalDataType: additionalData,
+              };
+            } else {
+              return task;
+            }
+          })
+          .sort((a, b) => a.order - b.order);
+      });
+    } else {
+      if (taskList.find((task) => task.order === taskOrder)) {
+        alert("Task order already exists");
+        return;
+      }
+      setTaskList(() =>
+        [
+          ...taskList,
+          {
+            name: taskName.trim(),
+            order: taskOrder,
+            additionalDataType: additionalData,
+          },
+        ].sort((a, b) => a.order - b.order)
+      );
     }
-    setTaskList(() =>
-      [
-        ...taskList,
-        {
-          name: newTaskName.trim(),
-          order: newTaskOrder,
-          additionalDataType: additionalData,
-        },
-      ].sort((a, b) => a.order - b.order)
-    );
-    setNewTaskName("");
-    setNewTaskOrder(0);
-    setShowAddTaskForm(false);
-  }
-  function handleEditTaskFormSubmit(e, originalName, originalOrder, originalDataType) {
-    e.preventDefault();
-    const additionalData = e.target["additional-data"].value;
-
-    // Check if new task order is already taken
-    if (
-      taskList.find(
-        (task) =>
-          task.order === editTaskOrder && editTaskOrder !== originalOrder
-      )
-    ) {
-      alert("Task order already exists");
-      return;
-    }
-    setTaskList(() => {
-      return taskList
-        .map((task) => {
-          if (task.name === originalName && task.order === originalOrder) {
-            return {
-              ...task,
-              name: editTaskName.trim(),
-              order: editTaskOrder,
-              additionalDataType: additionalData,
-            };
-          } else {
-            return task;
-          }
-        })
-        .sort((a, b) => a.order - b.order);
-    });
-    setEditTaskName("");
-    setEditTaskOrder(0);
+    setTaskName("");
+    setTaskOrder(0);
     setTaskDataType("none");
-    setShowEditTaskForm(false);
+    setShowTaskForm(false);
   }
 
   function handleTaskDelete(name) {
@@ -132,26 +121,17 @@ export default function TaskList({ taskList, setTaskList }) {
     <>
       <Header pageName="Task List" hideProfileBtn={true} hideBackBtn={false} />
       <div id="tasklist-page">
-        {showAddTaskForm ? (
-          <AddTaskForm
-            setShowAddTaskForm={setShowAddTaskForm}
-            onAddTaskFormSubmit={handleAddTaskFormSubmit}
-            newTaskName={newTaskName}
-            setNewTaskName={setNewTaskName}
-            newTaskOrder={newTaskOrder}
-            setNewTaskOrder={setNewTaskOrder}
-          />
-        ) : null}
-        {showEditTaskForm ? (
-          <EditTaskForm
-            setShowEditTaskForm={setShowEditTaskForm}
-            onEditTaskFormSubmit={handleEditTaskFormSubmit}
-            editTaskName={editTaskName}
-            setEditTaskName={setEditTaskName}
-            editTaskOrder={editTaskOrder}
-            setEditTaskOrder={setEditTaskOrder}
+        {showTaskForm ? (
+          <TaskForm
+            setShowTaskForm={setShowTaskForm}
+            onTaskFormSubmit={handleTaskFormSubmit}
+            taskName={taskName}
+            setTaskName={setTaskName}
+            taskOrder={taskOrder}
+            setTaskOrder={setTaskOrder}
             taskDataType={taskDataType}
             setTaskDataType={setTaskDataType}
+            formType={formType}
           />
         ) : null}
         <button
