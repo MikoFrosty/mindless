@@ -72,7 +72,7 @@ export default function History({ getHistory, onTimestampDelete }) {
     <>
       <Header pageName="History" hideProfileBtn={true} hideBackBtn={false} />
       <div id="history-page">
-        <h2>Run Times for Default Routine</h2>
+        <h2>Routine Timestamps</h2>
         <div id="table-container">
           <table>
             <thead>
