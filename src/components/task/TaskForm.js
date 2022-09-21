@@ -63,7 +63,11 @@ export default function EditTaskForm({
           <option value="text">Text</option>
           <option value="num">Number</option>
         </select>
-        <input className="button" type="submit" value={formType === "add" ? "Add Task" : "Edit Task"} />
+        <input
+          className="button"
+          type="submit"
+          value={formType === "add" ? "Add Task" : "Edit Task"}
+        />
         <button
           className="button cancel-task-button"
           type="button"
