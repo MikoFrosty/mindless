@@ -18,7 +18,7 @@ export default function TaskList({ taskList, setTaskList }) {
       setTaskOrder(Number.parseInt(taskOrder, 10));
     }
   }, [taskOrder]);
-  
+
   function handleAddTaskClick() {
     setFormType("add");
     setShowTaskForm(true);
@@ -31,16 +31,19 @@ export default function TaskList({ taskList, setTaskList }) {
     setShowTaskForm(true);
   }
 
-  function handleTaskFormSubmit(e, originalName = undefined, originalOrder = undefined) {
+  function handleTaskFormSubmit(
+    e,
+    originalName = undefined,
+    originalOrder = undefined
+  ) {
     e.preventDefault();
     const additionalData = e.target["additional-data"].value;
-    
+
     if (formType === "edit") {
-        // Check if new task order is already taken
+      // Check if new task order is already taken
       if (
         taskList.find(
-          (task) =>
-            task.order === taskOrder && taskOrder !== originalOrder
+          (task) => task.order === taskOrder && taskOrder !== originalOrder
         )
       ) {
         alert("Task order already exists");
