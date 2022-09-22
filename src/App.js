@@ -7,7 +7,15 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 import { auth } from "./utils/firebase-config";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Login from "./components/landing/Login";
@@ -21,10 +29,8 @@ import Profile from "./components/Profile";
 import Landing from "./components/landing/Landing";
 
 function App() {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [taskConfirm, setTaskConfirm] = useState(false);
   const [user, setUser] = useState({});
@@ -45,6 +51,7 @@ function App() {
           console.log("Database Document Exists for User: " + d.exists());
           if (d.exists()) {
             setTaskList(d.data().taskList);
+            setTaskConfirm(d.data().taskConfirm);
           } else {
             throw new Error("No Document Exists");
           }
@@ -69,27 +76,37 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskList]);
 
+  useEffect(() => {
+    if (user?.uid) {
+      updateDoc(doc(db, "users", user.uid), {
+        taskConfirm: taskConfirm,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskConfirm]);
+
   async function register(e) {
     e.preventDefault();
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
-        registerEmail,
-        registerPassword
+        email,
+        password
       );
 
       // Create new documents in firestore Database
       setDoc(doc(db, "users", user.uid), {
         taskList: [],
-        email: registerEmail, 
+        email: email,
+        taskConfirm: false,
       });
       setDoc(doc(db, "timestamps", user.uid), {
-        lastStart: 0, 
-        lastEnd: 0, 
+        lastStart: 0,
+        lastEnd: 0,
         timestamps: [],
-      })
-      setRegisterEmail("");
-      setRegisterPassword("");
+      });
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.log(error.message);
     }
@@ -98,13 +115,9 @@ function App() {
   async function login(e) {
     e.preventDefault();
     try {
-      const { user } = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      setLoginEmail("");
-      setLoginPassword("");
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      setEmail("");
+      setPassword("");
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -157,7 +170,12 @@ function App() {
           path="/home/start"
           element={
             <ProtectedRoute user={user}>
-              <StartRoutine taskList={taskList} setTaskList={setTaskList} onCompleteRoutine={handleCompleteRoutine} taskConfirm={taskConfirm}/>
+              <StartRoutine
+                taskList={taskList}
+                setTaskList={setTaskList}
+                onCompleteRoutine={handleCompleteRoutine}
+                taskConfirm={taskConfirm}
+              />
             </ProtectedRoute>
           }
         />
@@ -184,7 +202,10 @@ function App() {
           path="/home/history"
           element={
             <ProtectedRoute user={user}>
-              <History getHistory={getHistory} onTimestampDelete={handleTimestampDelete}/>
+              <History
+                getHistory={getHistory}
+                onTimestampDelete={handleTimestampDelete}
+              />
             </ProtectedRoute>
           }
         />
@@ -193,7 +214,12 @@ function App() {
           path="/home/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile user={user} logout={logout} taskConfirm={taskConfirm} setTaskConfirm={setTaskConfirm}/>
+              <Profile
+                user={user}
+                logout={logout}
+                taskConfirm={taskConfirm}
+                setTaskConfirm={setTaskConfirm}
+              />
             </ProtectedRoute>
           }
         />
@@ -203,10 +229,10 @@ function App() {
           element={
             <Register
               onSubmit={register}
-              registerEmail={registerEmail}
-              setRegisterEmail={setRegisterEmail}
-              registerPassword={registerPassword}
-              setRegisterPassword={setRegisterPassword}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
             />
           }
         />
@@ -216,10 +242,10 @@ function App() {
           element={
             <Login
               onSubmit={login}
-              loginEmail={loginEmail}
-              setLoginEmail={setLoginEmail}
-              loginPassword={loginPassword}
-              setLoginPassword={setLoginPassword}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
             />
           }
         />
