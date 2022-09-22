@@ -1,3 +1,14 @@
+/* colors for dark mode switching
+:root {
+  --primary: none;
+  --secondary: none;
+  --tertiary: none;
+  --text-header: #fff;
+  --text-main: black;
+}
+NOT USED YET
+*/
+
 * {
   box-sizing: border-box;
   margin: 0;
