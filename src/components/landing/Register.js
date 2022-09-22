@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import "./Register.css";
 
 export default function Register({
   onSubmit,
-  registerEmail,
-  setRegisterEmail,
-  registerPassword,
-  setRegisterPassword,
+  email,
+  setEmail,
+  password,
+  setPassword,
 }) {
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+  }, [setEmail, setPassword]);
   return (
     <div id="register-page">
       <h2>Create Account</h2>
@@ -18,8 +23,8 @@ export default function Register({
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           type="text"
           name="email"
-          value={registerEmail}
-          onChange={(e) => setRegisterEmail(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="password">Password:</label>
         <input
@@ -27,12 +32,14 @@ export default function Register({
           pattern=".{6,}"
           type="password"
           name="password"
-          value={registerPassword}
-          onChange={(e) => setRegisterPassword(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <input className="button" type="submit" value="Register" />
       </form>
-      <Link className="login-button button" to="/login">Login</Link>
+      <Link className="login-button button" to="/login">
+        Already have an account?
+      </Link>
     </div>
   );
 }
