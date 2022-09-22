@@ -71,27 +71,24 @@
 }
 
 #register-page .login-button {
-  text-decoration: none;
-  background-color: #fff;
-  color: #004dcb;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  width: 300px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-}
-@media (hover: hover) {
-  #register-page .login-button:hover {
+    text-decoration: none;
+    color: #004dcb;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 40px;
+    cursor: pointer;
+    width: 300px;
+  }
+  @media (hover: hover) {
+    #register-page .login-button:hover {
+      color: #004dcb;
+      text-decoration: underline;
+    }
+  }
+  #register-page .login-button:active {
     background-color: #fff;
     color: #004dcb;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
   }
-}
-#register-page .login-button:active {
-  background-color: #fff;
-  color: #004dcb;
-}
