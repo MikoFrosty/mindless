@@ -51,13 +51,21 @@ export default function History({ getHistory, onTimestampDelete }) {
 
       return (
         <tr key={index}>
+          <td className="td-timestamp-button">
+            <button
+              className="timestamp-button button"
+              onClick={() => {}}
+            >
+              <i className="las la-expand-arrows-alt"></i>
+            </button>
+          </td>
           <td>{startDate}</td>
           <td>{startTime}</td>
           <td>{endTime}</td>
           <td>{duration}</td>
-          <td className="td-timestamp-delete">
+          <td className="td-timestamp-button">
             <button
-              className="timestamp-delete-button button"
+              className="timestamp-button button"
               onClick={() => handleDeleteClick(arr[index])}
             >
               <i className="las la-trash"></i>
@@ -77,10 +85,12 @@ export default function History({ getHistory, onTimestampDelete }) {
           <table>
             <thead>
               <tr>
+                <th>Expand</th>
                 <th>Date (Top - Recent)</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Duration</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Total</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>{historyList}</tbody>
