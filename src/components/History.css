@@ -7,12 +7,13 @@
   margin-bottom: 50px;
   font-size: 2.5rem;
 }
-.td-timestamp-delete {
+.td-timestamp-button {
+  width: 0;
   text-align: center;
   padding: 0 8px;
   background-color: #f8f8f8;
 }
-.timestamp-delete-button {
+.timestamp-button {
   color: black;
   border: none;
   background-color: transparent;
@@ -20,11 +21,11 @@
   cursor: pointer;
 }
 @media (hover: hover) {
-  .timestamp-delete-button:hover {
+  .timestamp-button:hover {
     color: #fabb00;
   }
 }
-.timestamp-delete-button:active {
+.timestamp-button:active {
   color: #fabb00;
 }
 
