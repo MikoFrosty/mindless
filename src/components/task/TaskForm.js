@@ -66,7 +66,7 @@ export default function EditTaskForm({
         <input
           className="button"
           type="submit"
-          value={formType === "add" ? "Add Task" : "Edit Task"}
+          value={formType === "add" ? "Add Task" : "Save"}
         />
         <button
           className="button cancel-task-button"
