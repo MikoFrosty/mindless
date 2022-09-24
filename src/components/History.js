@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import timeDuration from "../utils/timeDuration";
 import Header from "./Header";
+import ExpandedView from "./ExpandedView";
 import "./History.css";
 
 export default function History({ getHistory, onTimestampDelete }) {
   const [history, setHistory] = useState({});
   const [historyUpdated, setHistoryUpdated] = useState(0);
+  const [expandedTask, setExpandedTask] = useState(-1);
 
   useEffect(() => {
     async function getHistoryData() {
@@ -54,10 +56,17 @@ export default function History({ getHistory, onTimestampDelete }) {
           <td className="td-timestamp-button">
             <button
               className="timestamp-button button"
-              onClick={() => {}}
+              onClick={() => setExpandedTask(index)}
             >
               <i className="las la-expand-arrows-alt"></i>
             </button>
+            {expandedTask === index && (
+              <ExpandedView
+                taskData={arr[index]}
+                startDate={startDate}
+                setExpandedTask={setExpandedTask}
+              />
+            )}
           </td>
           <td>{startDate}</td>
           <td>{startTime}</td>
@@ -80,7 +89,7 @@ export default function History({ getHistory, onTimestampDelete }) {
     <>
       <Header pageName="History" hideProfileBtn={true} hideBackBtn={false} />
       <div id="history-page">
-        <h2>Routine Timestamps</h2>
+        <h2>Timestamps</h2>
         <div id="table-container">
           <table>
             <thead>
