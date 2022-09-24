@@ -142,7 +142,7 @@ function App() {
   }
 
   async function getHistory() {
-    const timestampRaw = await getDoc(doc(db, "timestamps", user.uid));
+    const timestampRaw = await getDoc(doc(db, "timestamps", user.uid ?? "guest"));
     return timestampRaw.data() ?? [];
   }
 
