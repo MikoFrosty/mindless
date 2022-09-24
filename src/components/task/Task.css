@@ -18,7 +18,7 @@
 .over {
   position: relative;
   background-color: lightblue;
-  /* for using a color that implies insertion just abover the current element */
+  /* for using a color that implies insertion just above the current element */
   /*background-image: linear-gradient(lightblue, white 20%);*/
 }
 .over:after {
