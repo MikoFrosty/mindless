@@ -71,8 +71,8 @@ export default function ShowTask({
         )}
       </button>
       {(dataType === "text" || dataType === "num") && taskInput()}
-      <div id="current-time">
-        <p id="task-duration">
+      <div>
+        <p>
           {new Date(currentTime - taskStartTime)
             .toISOString()
             .substring(11, 19)}
