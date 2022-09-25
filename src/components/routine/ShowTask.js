@@ -9,9 +9,18 @@ export default function ShowTask({
   additionalData,
   setAdditionalData,
 }) {
-  const dataType = currentTask.additionalDataType;
+  let dataType = currentTask.additionalDataType;
   const [taskStartTime, setTaskStartTime] = useState(Date.now() - 1000);
   const [currentTime, setCurrentTime] = useState(Date.now());
+  const [skipped, setSkipped] = useState(false);
+
+  useEffect(() => {
+    if (skipped) {
+      onTaskClick();
+      setSkipped(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skipped]);
 
   useEffect(() => {
     setTaskStartTime(() => Date.now() - 1000);
@@ -52,6 +61,11 @@ export default function ShowTask({
     );
   }
 
+  function handleSkipTaskClick() {
+    setAdditionalData("skipped");
+    setSkipped(true);
+  }
+
   return (
     <>
       <p>
@@ -78,6 +92,14 @@ export default function ShowTask({
             .substring(11, 19)}
         </p>
       </div>
+      {/* add skip task button */}
+      <button
+        className="button"
+        id="skip-task-button"
+        onClick={handleSkipTaskClick}
+      >
+        Skip This Task
+      </button>
       {/*  // does not work, but maybe add feature later
       {taskIndex > 0 && (
         <button
