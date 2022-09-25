@@ -147,7 +147,7 @@ function App() {
   }
 
   async function handleTimestampDelete(timestamp) {
-    updateDoc(doc(db, "timestamps", user.uid), {
+    await updateDoc(doc(db, "timestamps", user.uid), {
       timestamps: arrayRemove(timestamp),
     });
   }
