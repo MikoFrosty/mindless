@@ -2,16 +2,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 3%;
   height: 100%;
   width: 100%;
 }
 #current-task {
+  width: 100%;
   font-size: 2rem;
 }
 #current-task > h2 {
-  margin: 40px;
-  font-size: 3rem;
+  margin: 70px 0 15px 0;
+  font-size: 3.3rem;
+  text-shadow: 2px 0px 0px #fabb00;
 }
 #next-task-button {
   text-decoration: none;
@@ -23,7 +26,7 @@
   font-size: 4rem;
   font-weight: bold;
   margin-top: 30px;
-  margin-bottom: 50%;
+  margin-bottom: 20px;
   cursor: pointer;
   width: 100%;
   max-width: 500px;
@@ -61,12 +64,10 @@
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
 }
 #task-input input {
-  position: relative;
-  top: -120px;
   width: 100%;
   max-width: 500px;
   height: 50px;
-  margin-bottom: 20px;
+  margin: 20px;
   padding: 0 20px;
   font-size: 1.6rem;
   border: none;
