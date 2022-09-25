@@ -1,13 +1,28 @@
+import { useState, useEffect } from "react";
+
 export default function ShowTask({
   onTaskClick,
   currentTask,
   lastTask,
   taskIndex,
-  setTaskIndex,
+  setTaskIndex, // May be used for future feature
   additionalData,
   setAdditionalData,
 }) {
   const dataType = currentTask.additionalDataType;
+  const [taskStartTime, setTaskStartTime] = useState(Date.now() - 1000);
+  const [currentTime, setCurrentTime] = useState(Date.now());
+
+  useEffect(() => {
+    setTaskStartTime(() => Date.now() - 1000);
+  }, [taskIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   function taskInput() {
     if (dataType === "num") {
@@ -39,8 +54,13 @@ export default function ShowTask({
 
   return (
     <>
-      <h2>Current Task:</h2>
-      <h3>{currentTask.name}</h3>
+      <p>
+        {new Date(currentTime).toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+        })}
+      </p>
+      <h2>{currentTask.name}</h2>
       <button className="button" id="next-task-button" onClick={onTaskClick}>
         {lastTask() ? (
           "Complete"
@@ -51,7 +71,13 @@ export default function ShowTask({
         )}
       </button>
       {(dataType === "text" || dataType === "num") && taskInput()}
-
+      <div id="current-time">
+        <p id="task-duration">
+          {new Date(currentTime - taskStartTime)
+            .toISOString()
+            .substring(11, 19)}
+        </p>
+      </div>
       {/*  // does not work, but maybe add feature later
       {taskIndex > 0 && (
         <button
