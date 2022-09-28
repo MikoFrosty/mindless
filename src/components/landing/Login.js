@@ -8,6 +8,7 @@ export default function Login({
   setEmail,
   password,
   setPassword,
+  onDemoClick,
 }) {
   useEffect(() => {
     setEmail("");
@@ -39,6 +40,9 @@ export default function Login({
       </form>
       <Link className="register-button button" to="/register">
         Need to create an account?
+      </Link>
+      <Link className="demo-button button" to="#" onClick={onDemoClick}>
+        Demo (no login required)
       </Link>
     </div>
   );
