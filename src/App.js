@@ -34,6 +34,7 @@ function App() {
   const [taskList, setTaskList] = useState([]);
   const [taskConfirm, setTaskConfirm] = useState(false);
   const [user, setUser] = useState({});
+  const [demo, setDemo] = useState(false);
   let navigate = useNavigate();
 
   const db = getFirestore();
@@ -63,6 +64,7 @@ function App() {
       navigate("/home", { replace: true });
     } else {
       navigate("/", { replace: true });
+      setDemo(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -85,8 +87,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskConfirm]);
 
-  async function register(e) {
-    e.preventDefault();
+  async function register() {
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -112,8 +113,7 @@ function App() {
     }
   }
 
-  async function login(e) {
-    e.preventDefault();
+  async function login() {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       setEmail("");
@@ -124,8 +124,7 @@ function App() {
     }
   }
 
-  async function logout(e) {
-    e.preventDefault();
+  async function logout() {
     try {
       await signOut(auth);
     } catch (error) {
@@ -142,7 +141,9 @@ function App() {
   }
 
   async function getHistory() {
-    const timestampRaw = await getDoc(doc(db, "timestamps", user.uid ?? "guest"));
+    const timestampRaw = await getDoc(
+      doc(db, "timestamps", user.uid ?? "guest")
+    );
     return timestampRaw.data() ?? [];
   }
 
@@ -152,10 +153,27 @@ function App() {
     });
   }
 
+  function handleDemoClick() {
+    setEmail("guest@guest.com");
+    setPassword("password");
+    setDemo(true);
+  }
+
+  useEffect(() => {
+    if (demo) {
+      login();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [demo]);
+
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Landing />} />
+        <Route
+          exact
+          path="/"
+          element={<Landing onDemoClick={handleDemoClick} />}
+        />
         <Route
           exact
           path="/home"
@@ -246,6 +264,7 @@ function App() {
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
+              onDemoClick={handleDemoClick}
             />
           }
         />
