@@ -87,7 +87,8 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskConfirm]);
 
-  async function register() {
+  async function register(e) {
+    e.preventDefault();
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -113,7 +114,8 @@ function App() {
     }
   }
 
-  async function login() {
+  async function login(e) {
+    e.preventDefault();
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       setEmail("");
