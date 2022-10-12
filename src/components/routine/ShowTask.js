@@ -40,7 +40,7 @@ export default function ShowTask({
           <input
             type="number"
             value={additionalData}
-            onChange={(e) => setAdditionalData(Number(e.target.value))}
+            onChange={(e) => setAdditionalData(e.target.value)}
             placeholder="Enter a number..."
             inputMode="decimal"
             pattern="[0-9.]+"
