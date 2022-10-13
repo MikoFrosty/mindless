@@ -18,9 +18,9 @@ export default function History({ getHistory, onTimestampDelete }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [historyUpdated]);
 
-  function handleDeleteClick(tsData) {
+  function handleDeleteClick(tsData, startDate) {
     const confirm = window.confirm(
-      `Are you sure you want to delete this timestamp?`
+      `Are you sure you want to delete this timestamp?\n(${startDate})`
     );
     if (confirm) {
       onTimestampDelete(tsData).then(() =>
@@ -75,7 +75,7 @@ export default function History({ getHistory, onTimestampDelete }) {
           <td className="td-timestamp-button">
             <button
               className="timestamp-button button"
-              onClick={() => handleDeleteClick(arr[index])}
+              onClick={() => handleDeleteClick(arr[index], startDate)}
             >
               <i className="las la-trash"></i>
             </button>

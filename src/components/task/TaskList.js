@@ -89,7 +89,7 @@ export default function TaskList({ taskList, setTaskList }) {
 
   function handleTaskDelete(name) {
     const confirm = window.confirm(
-      `Are you sure you want to delete this task?`
+      `Are you sure you want to delete this task?\n(${name})`
     );
     if (confirm) {
       setTaskList(() => {
