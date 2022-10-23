@@ -1,5 +1,5 @@
 # MindLess
-MindLess is a React web-app ([Create React App](https://github.com/facebook/create-react-app)), using Firebase, that lets you create a routine of tasks that can be easily followed. MindLess keeps track of timestamps so that users can evaluate performance.
+MindLess is a React web-app ([Create React App](https://github.com/facebook/create-react-app)), using Firebase, that lets users create a routine of tasks that can be easily followed. MindLess keeps track of timestamps so that users can evaluate performance.
 
 ## How To Use
 
