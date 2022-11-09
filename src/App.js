@@ -35,6 +35,7 @@ function App() {
   const [taskConfirm, setTaskConfirm] = useState(false);
   const [user, setUser] = useState({});
   const [demo, setDemo] = useState(false);
+  const [error, setError] = useState("");
   let navigate = useNavigate();
 
   const db = getFirestore();
@@ -59,6 +60,7 @@ function App() {
         })
         .catch((error) => {
           console.log("Error getting document:", error);
+          setError(true);
         });
 
       navigate("/home", { replace: true });
@@ -167,6 +169,22 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [demo]);
+
+  if (error) {
+    return (
+      <div className="App">
+        <br />
+        <br />
+        <h1>Something went wrong</h1>
+        <code>(database error)</code>
+        <br />
+        <br />
+        <p>Don't worry, we're working on it</p>
+        <p>Try again a little later and things should be fixed</p>
+        <p>We apologize for any inconvenience</p> 
+      </div>
+    )
+  }
 
   return (
     <div className="App">
