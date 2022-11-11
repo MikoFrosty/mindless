@@ -9,6 +9,7 @@ export default function StartRoutine({
   taskConfirm,
   onCompleteRoutine,
 }) {
+  const [tempTaskList, setTempTaskList] = useState(taskList);
   const [taskIndex, setTaskIndex] = useState(0);
   const [additionalData, setAdditionalData] = useState("");
   const { current: routineStartTime } = useRef(Date.now());
@@ -25,40 +26,44 @@ export default function StartRoutine({
         return;
       }
     }
-    setTaskList((prevTaskList) => {
-      return prevTaskList.map((task, index) => {
-        if (index === taskIndex) {
-          return {
-            ...task,
-            lastStart:
-              index === 0 ? routineStartTime : prevTaskList[index - 1].lastEnd,
-            lastEnd: Date.now(),
-            additionalData,
-          };
-        } else {
-          return task;
-        }
-      });
+    const newTaskList = tempTaskList.map((task, index) => {
+      if (index === taskIndex) {
+        return {
+          ...task,
+          lastStart:
+            index === 0 ? routineStartTime : tempTaskList[index - 1].lastEnd,
+          lastEnd: Date.now(),
+          additionalData,
+        };
+      } else {
+        return task;
+      }
     });
+
+    setTempTaskList(newTaskList);
+
+    if (lastTask()) {
+      setTaskList(newTaskList);
+    } else {
+      setTaskIndex(taskIndex + 1);
+      setAdditionalData("");
+    }
   }
 
   useEffect(() => {
+    if (!skipCount) {
+      onCompleteRoutine(routineStartTime, Date.now());
+      navigate("/home/complete");
+    }
+
     // Don't run on first render
     if (skipCount) setSkipCount(false);
-    if (!skipCount) {
-      if (lastTask()) {
-        onCompleteRoutine(routineStartTime, Date.now());
-        navigate("/home/complete");
-      } else {
-        setTaskIndex((prevIndex) => prevIndex + 1);
-        setAdditionalData("");
-      }
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskList]);
 
   function lastTask() {
-    return taskIndex === taskList.length - 1;
+    return taskIndex === tempTaskList.length - 1;
   }
 
   function NoTask() {
@@ -78,10 +83,10 @@ export default function StartRoutine({
   return (
     <div id="start-routine-page">
       <div id="current-task">
-        {taskList.length > 0 ? (
+        {tempTaskList.length > 0 ? (
           <ShowTask
             onTaskClick={handleTaskClick}
-            currentTask={taskList[taskIndex]}
+            currentTask={tempTaskList[taskIndex]}
             lastTask={lastTask}
             taskIndex={taskIndex}
             setTaskIndex={setTaskIndex}
