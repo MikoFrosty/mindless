@@ -50,7 +50,7 @@ function App() {
     if (user?.uid) {
       getDoc(doc(db, "users", user.uid))
         .then((d) => {
-          console.log("Database Document Exists for User: " + d.exists());
+          //console.log("Database Document Exists for User: " + d.exists());
           if (d.exists()) {
             setTaskList(d.data().taskList);
             setTaskConfirm(d.data().taskConfirm);
@@ -122,7 +122,7 @@ function App() {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       setEmail("");
       setPassword("");
-      console.log(user);
+      //console.log(user);
     } catch (error) {
       console.log(error.message);
     }
@@ -271,6 +271,7 @@ function App() {
               setEmail={setEmail}
               password={password}
               setPassword={setPassword}
+              onDemoClick={handleDemoClick}
             />
           }
         />
