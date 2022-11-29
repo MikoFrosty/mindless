@@ -157,15 +157,15 @@ function App() {
     });
   }
 
-  function handleDemoClick() {
+  function handleDemoClick(e) {
     setEmail("guest@guest.com");
     setPassword("password");
-    setDemo(true);
+    setDemo(e);
   }
 
   useEffect(() => {
     if (demo) {
-      login();
+      login(demo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [demo]);
