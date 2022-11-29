@@ -1,0 +1,40 @@
+.auth-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: #fabb00;
+}
+
+.auth-h2 {
+  margin: 72px;
+  font-size: 5.5rem;
+  text-align: center;
+  color: #fff;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.register-button, .login-button {
+  text-decoration: none;
+  color: #004dcb;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 25px;
+  cursor: pointer;
+  width: 300px;
+}
+@media (hover: hover) {
+  .register-button:hover, .login-button:hover {
+    color: #004dcb;
+    text-decoration: underline;
+  }
+}
+.register-button:active, .login-button:active {
+  background-color: #fff;
+  color: #004dcb;
+}
