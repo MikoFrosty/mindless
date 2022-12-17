@@ -16,7 +16,7 @@ export default function ShowTask({
 
   useEffect(() => {
     if (skipped) {
-      onTaskClick();
+      onTaskClick(null, skipped);
       setSkipped(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
