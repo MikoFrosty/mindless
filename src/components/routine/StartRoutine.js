@@ -17,7 +17,7 @@ export default function StartRoutine({
 
   const navigate = useNavigate();
 
-  function handleTaskClick() {
+  function handleTaskClick(e, skipped = false) {
     if (taskConfirm) {
       const confirm = window.confirm(
         `Move on to the next task? You will not be able to go back to this task.`
@@ -28,11 +28,14 @@ export default function StartRoutine({
     }
     const newTaskList = tempTaskList.map((task, index) => {
       if (index === taskIndex) {
+        let startTime = !index ? routineStartTime : tempTaskList[index - 1].lastEnd;
+        let endTime = Date.now();
+        if (skipped) endTime = startTime;
+
         return {
           ...task,
-          lastStart:
-            index === 0 ? routineStartTime : tempTaskList[index - 1].lastEnd,
-          lastEnd: Date.now(),
+          lastStart: startTime,
+          lastEnd: endTime,
           additionalData,
         };
       } else {
@@ -52,7 +55,7 @@ export default function StartRoutine({
 
   useEffect(() => {
     if (!skipCount) {
-      onCompleteRoutine(routineStartTime, Date.now());
+      onCompleteRoutine(routineStartTime, taskList.at(-1).lastEnd);
       navigate("/home/complete");
     }
 
