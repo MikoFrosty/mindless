@@ -119,10 +119,9 @@ function App() {
   async function login(e) {
     e.preventDefault();
     try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password); // return value can be assigned to/as { user }
       setEmail("");
       setPassword("");
-      //console.log(user);
     } catch (error) {
       console.log(error.message);
     }
