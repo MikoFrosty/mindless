@@ -9,11 +9,12 @@ export default function ShowTask({
   setTaskIndex,
   additionalData,
   setAdditionalData,
+  taskStartTime,
 }) {
   let dataType = currentTask?.additionalDataType ?? "ERROR - NO DATA TYPE";
-  const [taskStartTime, setTaskStartTime] = useState(Date.now() - 1000);
-  const [currentTime, setCurrentTime] = useState(Date.now());
   const [skipped, setSkipped] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const now = Date.now();
 
   useEffect(() => {
     if (skipped) {
@@ -24,15 +25,11 @@ export default function ShowTask({
   }, [skipped]);
 
   useEffect(() => {
-    setTaskStartTime(() => Date.now() - 1000);
-  }, [taskIndex]);
-
-  useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(Date.now());
+      setCounter(oldCount => oldCount + 1000);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [counter]);
 
   function taskInput() {
     if (dataType === "num") {
@@ -70,12 +67,13 @@ export default function ShowTask({
   return (
     <>
       <p>
-        {new Date(currentTime).toLocaleTimeString("en-US", {
+        {new Date(now).toLocaleTimeString("en-US", {
           hour: "numeric",
           minute: "numeric",
         })}
       </p>
       <h2>{currentTask?.name ?? "ERROR - NO NAME"}</h2>
+      {/* Next task button */}
       <button className="button" id="next-task-button" onClick={onTaskClick}>
         {lastTask() ? (
           "Complete"
@@ -85,10 +83,12 @@ export default function ShowTask({
           </p>
         )}
       </button>
+      {/* Input box (additional data) */}
       {(dataType === "text" || dataType === "num") && taskInput()}
+      {/* Counter */}
       <div>
         <p>
-          {new Date(currentTime - taskStartTime)
+          {new Date(now - taskStartTime)
             .toISOString()
             .substring(11, 19)}
         </p>
