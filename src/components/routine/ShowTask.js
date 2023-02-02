@@ -100,7 +100,7 @@ export default function ShowTask({
           id="previous-task-button"
           onClick={() => setTaskIndex((prev) => prev - 1)}
         >
-          <i class="las la-chevron-left"></i>
+          <i className="las la-chevron-left"></i>
           Previous Task
         </button>
       )}
@@ -111,7 +111,7 @@ export default function ShowTask({
         onClick={handleSkipTaskClick}
       >
         Skip This Task
-        <i class="las la-chevron-right"></i>
+        <i className="las la-chevron-right"></i>
       </button>
     </>
   );
