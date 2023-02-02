@@ -9,7 +9,12 @@ export default function StartRoutine({
   taskConfirm,
   onCompleteRoutine,
 }) {
-  const [tempTaskList, setTempTaskList] = useState(taskList);
+  const [tempTaskList, setTempTaskList] = useState(taskList.map((task) => ({
+    // remove lastStart and lastEnd from task
+    ...task,
+    lastStart: null,
+    lastEnd: null,
+    })));
   const [taskIndex, setTaskIndex] = useState(0);
   const [additionalData, setAdditionalData] = useState("");
   const { current: routineStartTime } = useRef(Date.now());
@@ -83,11 +88,27 @@ export default function StartRoutine({
     );
   }
 
+  // returns the start time of the current task
+  // recursively calls itself if the previous task was skipped
+  function getStartTime(index) {
+    if (index === 0) {
+      return routineStartTime;
+    } else {
+      const prevTask = tempTaskList[index - 1];
+      if (prevTask.lastStart === prevTask.lastEnd) {
+        return getStartTime(index - 1);
+      } else {
+        return prevTask.lastEnd;
+      }
+    }
+  }
+
   return (
     <div id="start-routine-page">
       <div id="current-task">
         {tempTaskList.length > 0 ? (
           <ShowTask
+            taskStartTime={getStartTime(taskIndex)}
             onTaskClick={handleTaskClick}
             currentTask={tempTaskList[taskIndex]}
             lastTask={lastTask}
