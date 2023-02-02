@@ -1,31 +1,53 @@
-#previous-task-button, #skip-task-button {
-    text-decoration: none;
-    background-color: transparent;
-    color: #004dcb;
-    border: none;
-    padding: 6px 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 30px;
-    cursor: pointer;
-    max-width: 500px;
-    border-radius: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+#extra-task-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+}
+#extra-task-buttons button:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
-#previous-task-button:hover, #skip-task-button:hover {
+#previous-task-button,
+#skip-task-button {
+  text-decoration: none;
+  background-color: transparent;
+  color: #004dcb;
+  border: none;
+  padding: 6px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 300px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#previous-task-button {
+  margin-right: 10px;
+}
+#skip-task-button {
+  margin-left: 10px;
+}
+
+@media (hover: hover) {
+  #previous-task-button:hover,
+  #skip-task-button:hover {
     background-color: #004dcb;
     color: #fff;
+  }
 }
 
-#previous-task-button i, #skip-task-button i {
-    font-size: 1.2rem;
+#previous-task-button i,
+#skip-task-button i {
+  font-size: 1.2rem;
 }
 .la-chevron-left {
-    margin-right: 10px;
+  margin-right: 6px;
 }
 .la-chevron-right {
-    margin-left: 10px;
+  margin-left: 6px;
 }
