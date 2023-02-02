@@ -1,0 +1,31 @@
+#previous-task-button, #skip-task-button {
+    text-decoration: none;
+    background-color: transparent;
+    color: #004dcb;
+    border: none;
+    padding: 6px 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 30px;
+    cursor: pointer;
+    max-width: 500px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#previous-task-button:hover, #skip-task-button:hover {
+    background-color: #004dcb;
+    color: #fff;
+}
+
+button i {
+    font-size: 1.2rem;
+}
+.la-chevron-left {
+    margin-right: 10px;
+}
+.la-chevron-right {
+    margin-left: 10px;
+}
