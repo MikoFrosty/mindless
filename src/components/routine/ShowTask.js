@@ -100,7 +100,6 @@ export default function ShowTask({
           id="previous-task-button"
           onClick={() => setTaskIndex((prev) => prev - 1)}
         >
-          {/*line awesome back arrow icon*/}
           <i class="las la-chevron-left"></i>
           Previous Task
         </button>
