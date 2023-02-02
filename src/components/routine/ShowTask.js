@@ -26,7 +26,7 @@ export default function ShowTask({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCounter(oldCount => oldCount + 1000);
+      setCounter((oldCount) => oldCount + 1000);
     }, 1000);
     return () => clearInterval(interval);
   }, [counter]);
@@ -87,32 +87,30 @@ export default function ShowTask({
       {(dataType === "text" || dataType === "num") && taskInput()}
       {/* Counter */}
       <div>
-        <p>
-          {new Date(now - taskStartTime)
-            .toISOString()
-            .substring(11, 19)}
-        </p>
+        <p>{new Date(now - taskStartTime).toISOString().substring(11, 19)}</p>
       </div>
-      {/* Back button */}
-      {taskIndex > 0 && (
+      <div id="extra-task-buttons">
+        {/* Back button */}
+        {taskIndex > 0 && (
+          <button
+            className="button"
+            id="previous-task-button"
+            onClick={() => setTaskIndex((prev) => prev - 1)}
+          >
+            <i className="las la-chevron-left"></i>
+            Previous Task
+          </button>
+        )}
+        {/* Skip task button */}
         <button
           className="button"
-          id="previous-task-button"
-          onClick={() => setTaskIndex((prev) => prev - 1)}
+          id="skip-task-button"
+          onClick={handleSkipTaskClick}
         >
-          <i className="las la-chevron-left"></i>
-          Previous Task
+          Skip This Task
+          <i className="las la-chevron-right"></i>
         </button>
-      )}
-      {/* Skip task button */}
-      <button
-        className="button"
-        id="skip-task-button"
-        onClick={handleSkipTaskClick}
-      >
-        Skip This Task
-        <i className="las la-chevron-right"></i>
-      </button>
+      </div>
     </>
   );
 }
