@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import "./ShowTask.css";
 
 export default function ShowTask({
   onTaskClick,
   currentTask,
   lastTask,
   taskIndex,
-  setTaskIndex, // May be used for future feature
+  setTaskIndex,
   additionalData,
   setAdditionalData,
 }) {
-  let dataType = currentTask.additionalDataType;
+  let dataType = currentTask?.additionalDataType ?? "ERROR - NO DATA TYPE";
   const [taskStartTime, setTaskStartTime] = useState(Date.now() - 1000);
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [skipped, setSkipped] = useState(false);
@@ -74,7 +75,7 @@ export default function ShowTask({
           minute: "numeric",
         })}
       </p>
-      <h2>{currentTask.name}</h2>
+      <h2>{currentTask?.name ?? "ERROR - NO NAME"}</h2>
       <button className="button" id="next-task-button" onClick={onTaskClick}>
         {lastTask() ? (
           "Complete"
@@ -92,25 +93,27 @@ export default function ShowTask({
             .substring(11, 19)}
         </p>
       </div>
-      {/* add skip task button */}
+      {/* Back button */}
+      {taskIndex > 0 && (
+        <button
+          className="button"
+          id="previous-task-button"
+          onClick={() => setTaskIndex((prev) => prev - 1)}
+        >
+          {/*line awesome back arrow icon*/}
+          <i class="las la-chevron-left"></i>
+          Previous Task
+        </button>
+      )}
+      {/* Skip task button */}
       <button
         className="button"
         id="skip-task-button"
         onClick={handleSkipTaskClick}
       >
         Skip This Task
+        <i class="las la-chevron-right"></i>
       </button>
-      {/*  // does not work, but maybe add feature later
-      {taskIndex > 0 && (
-        <button
-          className="button"
-          id="previous-task-button"
-          onClick={(prev) => setTaskIndex(prev - 1)}
-        >
-          Previous Task
-        </button>
-      )}
-        */}
     </>
   );
 }
